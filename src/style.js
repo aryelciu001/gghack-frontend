@@ -138,6 +138,14 @@ export const styles = StyleSheet.create({
         fontFamily: 'Gotham',
         fontWeight: 'bold',
     },
+    inputField: {
+        width: '100%',
+        flexDirection: 'row',
+        borderBottomColor: '#CECECE',
+        borderBottomWidth: 1,
+        height: 50,
+        alignItems:'center',
+    },  
     regularButton: {
         backgroundColor: '#F25846',
         borderRadius: 10,
@@ -160,6 +168,16 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    placeholder: {
+        color: '#CECECE',
+        fontSize: 18,
+        fontFamily: 'Gotham-Medium',
+    },
+    placeholderActive: {
+        color: '#707070',
+        fontSize: 18,
+        fontFamily: 'Gotham-Medium',
+    },
     bannerHeader: {
         width: '100%',
         marginTop: 30,
@@ -174,6 +192,21 @@ export const styles = StyleSheet.create({
         elevation: 6,
         backgroundColor: 'white',
         justifyContent: 'center'
+    },
+    tallHeader: {
+        width: '100%',
+        height: 150,
+        shadowColor: "#dddddd",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.07,
+        shadowRadius: 4.65,
+        elevation: 6,
+        backgroundColor: 'white',
+        justifyContent: 'flex-start',
+        padding: 10,
     },
     headerBox: {
         width: '100%',
@@ -238,12 +271,34 @@ export const styles = StyleSheet.create({
         textAlign: 'left',
         fontWeight: 'bold',
     },
+    eventText: { 
+        color: '#E03621',
+        fontSize: 24,
+        fontFamily: 'Gotham',
+        textAlign: 'left',
+        fontWeight: 'bold',
+    },
+    bigText: { 
+        color: '#E03621',
+        fontSize: 36,
+        fontFamily: 'Gotham',
+        textAlign: 'left',
+        fontWeight: 'bold',
+    },
     boxText: { 
         color: '#E03621',
         fontSize: 18,
         fontFamily: 'Gotham',
         textAlign: 'left',
     },
+    boxText2: { 
+        color: '#AA2D2D',
+        fontSize: 14,
+        fontFamily: 'Gotham',
+        textAlign: 'left',
+        fontWeight: 'bold'
+    },
+
     carousel:{
         height: 150,
         width: '50%',
@@ -263,22 +318,18 @@ export const styles = StyleSheet.create({
         padding: 8,
     },
     card:{
-        height: 150,
+        height: 120,
         width: '50%',
         margin: '3%',
         backgroundColor: 'white',
-        borderRadius: 10,
         shadowColor: "#dddddd",
-        shadowOffset: {
-            width: 0,
-            height: 7,
-        },
         shadowOpacity: 0.07,
         shadowRadius: 4.65,
         elevation: 6,
         borderColor: '#CECECE',
         borderWidth: 1,
-        padding: 0,
+        borderRadius: 10,
+        overflow: 'hidden',
     },
     btnFromText: {
         width: '100%',
@@ -299,5 +350,27 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
         elevation: 6,
     },
+    whiteButton: {
+        width: 120,
+        height: 40,
+        backgroundColor: 'white',
+        color: '#F25846',
+        borderColor: '#F25846',
+        borderWidth: 1,
+        paddingTop: 14,
+        paddingBottom: 14,
+        textAlign: "center",
+        fontWeight: 'bold',
+        fontSize: 18,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },  
+    wbText: {
+        color: '#F25846',
+        fontSize: 14,
+        fontWeight: 'bold',
+        fontFamily: 'Gotham'
+    }
 })
 

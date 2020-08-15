@@ -27,8 +27,9 @@ export default class SplashScreen extends React.Component {
                         source={require("../img/logo.png")}
                         style={{
                             width: 168,
-                            height: 168,
+                            height: 300,
                         }}
+                        resizeMode='contain'
                     />
                     </TouchableHighlight>
                 </View>

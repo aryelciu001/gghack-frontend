@@ -13,7 +13,7 @@ export const httpOptions = {
   }
 }
 
-export const api = "http://10.65.0.54"
+export const api = "https://haemo.herokuapp.com"
 
 
 /*

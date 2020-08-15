@@ -11,7 +11,7 @@ import {
   } from 'react-native';
 import {styles} from '../style'
 import Geocoder from 'react-native-geocoding'; 
-import TextBox from '../component/textField'
+import TextBox from '../component/upText'
 import Geolocation from "@react-native-community/geolocation";
 import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -52,7 +52,8 @@ export default class LoginScreen extends React.Component {
         notUrgent: true,
         urgent: false,
         veryUrgent: false,
-        result: true,
+        result: false,
+        qty: '1',
     };
 
     componentDidMount(){
@@ -133,26 +134,38 @@ export default class LoginScreen extends React.Component {
                         <Text style={styles.locText}>
                             What blood type do you need?
                         </Text>
+                        
                         <View style={{flexDirection: 'row', marginTop: 10}}>
-                                <View style={{flex: 1,  marginLeft: 5}}>
+                            
+                                <View style={{flex: 1.5}}>
                                     <Picker 
                                         placeholder="Blood Type"
-                                        widthBox= {100}
+                                        widthBox= {'80%'}
                                         pickerArray={['A','B','AB','O']}
                                         value={this.state.blood}
                                         onValueChange={(text) => this.setState({blood: text})}
                                     />
                                 </View>
-                                <View style={{flex: 1}}>
+                                <View style={{flex: 1.5}}>
                                     <Picker 
                                         placeholder="Rhesus"
-                                        widthBox= {100}
+                                        widthBox= {'80%'}
                                         value={this.state.rhesus}
                                         pickerArray={['+','-']}
                                         onValueChange={(text) => this.setState({rhesus: text})}
                                     />
                                 </View>
-                            </View>
+                      
+                                <View style={{flex: 2, justifyContent: 'center', alignItems:'center'}}>
+                                    <TextBox 
+                                        placeholder="Quantity"
+                                        widthBox= {'40%'}
+                                        value={this.state.qty}
+                                        onValueChange={(text) => this.setState({qty: text})}
+                                    />
+                                </View>
+                 
+                        </View>
                     </View>
                     <View style={{marginTop: 15}}>
                         <Text style={styles.locText}>
@@ -216,16 +229,20 @@ export default class LoginScreen extends React.Component {
                         </Text>
                         <View style={{padding: '5%', justifyContent: 'center', alignItems: 'center', }}>
                             <View style= {styles.bannerList}>
-                                <Text style={styles.subheaderTextLeft}>
-                                    PMI 231
-                                </Text>
-                                <Text style={styles.helpText}>
-                                    Jalan Basuki Rahmat
-                                </Text>
-                                <Text style={styles.normalText}>
-                                    <Text style={{fontWeight: 'bold'}}>23</Text>
-                                    {" "}in stock
-                                </Text>
+                                <TouchableOpacity 
+                                    onPress={()=>{this.props.navigation.navigate('BookScreen')}}
+                                >
+                                    <Text style={styles.subheaderTextLeft}>
+                                        PMI 231
+                                    </Text>
+                                    <Text style={styles.helpText}>
+                                        Jalan Basuki Rahmat
+                                    </Text>
+                                    <Text style={styles.normalText}>
+                                        <Text style={{fontWeight: 'bold'}}>23</Text>
+                                        {" "}in stock
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
                           
 

@@ -159,7 +159,7 @@ export default class LoginScreen extends React.Component {
 
     onRegister = () => {
         this.setState({result: true})
-        this.props.navigation.navigate("RegisteredScreen")
+        this.props.navigation.navigate("BookSuccessScreen")
     }
     onDatePick = () => {
         console.log("pick")
@@ -224,15 +224,46 @@ export default class LoginScreen extends React.Component {
                 <View style={styles.Container}>
                     <View style={{marginTop: 15}}>
                                         
-                        <View style={{marginTop: 20, marginBottom: 20}}>
-                            <Text style={styles.locText}>
-                                Location
-                            </Text>
-
-                            <Text style={styles.normalText}>
-                                Gedung Serbaguna, Jalan Basuki Rahmat
-                            </Text>
+                        <View style={{marginBottom: 20}}>
+                        <View style={{ justifyContent: 'center', paddingLeft: 10, }}>
+                                <Text style={styles.helpText}>Location </Text>
+                                <View style={{flexDirection: 'row', alignItems: 'center', }}>
+                                    <Image
+                                        source={require('../img/loc.png')}
+                                        style={{
+                                            width: 15,
+                                            height: 15,
+                                            marginRight: 5,
+                                        }}
+                                        resizeMode={'contain'}
+                                        />
+                                    <Text style={styles.locText}>Jalan Gatot Subroto No.1</Text>
+                                </View>
+                            </View>
                         </View>
+
+                        <View style={{marginBottom: 20}}>
+                        <View style={{ justifyContent: 'center', paddingLeft: 10, }}>
+                                <Text style={styles.helpText}>Booking Details: </Text>
+                                <View style={{flexDirection: 'row', alignItems: 'center', }}>
+                                    
+                                    <Text style={styles.locText}>A+, 1 total
+                                    </Text>
+                                            <Text style={[{color: '#F25846', fontFamily: 'Gotham',fontSize: 14, textDecorationLine: 'underline', marginLeft: 20, alignSelf: 'flex-end'}]}>
+                                                Edit</Text>
+                                </View>
+                            </View>
+                        </View>
+
+                        <Text style={[styles.placeholderActive, {marginBottom: 10}]}>
+                        What to keep in mind before you book: 
+                        </Text>
+                        <Text style={[styles.normalText, {marginBottom: 10}]}>
+                        - You are required to bring an official statement letter from your healthcare provider upon claiming your booking.
+                        </Text>
+                        <Text style={[styles.normalText, {marginBottom: 10}]}>
+                        - Lorem ipsum dolor sit amet, consetetur
+                        </Text>
                         <Text style={styles.subheaderTextLeft}>
                         Book donor appointment
                             </Text>
@@ -259,7 +290,7 @@ export default class LoginScreen extends React.Component {
                             style={styles.midButton}
                         >
                             <Text style={styles.buttonText}>
-                                Register
+                                BOOK
                             </Text>
                         </Button>
                     </View>

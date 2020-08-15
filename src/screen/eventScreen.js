@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -18,107 +18,6 @@ import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Picker from '../component/picker'
 import {Button} from 'native-base'
-import DateTimePicker from '@react-native-community/datetimepicker';
-
-
-const DatePick = (props) => {
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
-  
-    const onChange = (event, selectedDate) => {
-      const currentDate = selectedDate || date;
-      setShow(false);
-      console.log("curr date is ", currentDate)
-      console.log(props.value)
-      props.onChangeDate(currentDate, mode)
-      setDate(currentDate);
-    };
-  
-    const showMode = (currentMode) => {
-      setShow(true);
-      setMode(currentMode);
-    };
-  
-    const showDatepicker = () => {
-        console.log("showing date")
-        props.onPressDate()
-      showMode('date');
-    };
-  
-    const showTimepicker = () => {
-        props.onPressTime()
-      showMode('time');
-    };
-  
-    return (
-      <View>
-             <View style={styles.inputField}>
-
-                <Image
-                source={require('../img/cal.png')}
-                style={{
-                    width: 20,
-                    height: 20,
-                    marginRight: 5,
-                    marginLeft: 10,
-                }}
-                resizeMode={'contain'}
-                />
-
-                <View style={{justifyContent: 'center', marginLeft: 5}}>
-                    <TouchableOpacity
-                        onPress= {showDatepicker}
-                    >
-                        <Text style={props.actDate ? styles.placeholderActive:styles.placeholder}>
-                        { props.actDate
-                            ? props.value[0].replace("\"","") : "Choose Date" }
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
-
-                </View>
-                <View style={styles.inputField}>
-
-                <Image
-                source={require('../img/time.png')}
-                style={{
-                    width: 20,
-                    height: 20,
-                    marginRight: 5,
-                    marginLeft: 10,
-                }}
-                resizeMode={'contain'}
-                />
-
-                <View style={{justifyContent: 'center', marginLeft: 5}}>
-                    <TouchableOpacity
-                        onPress= {showTimepicker}
-                    >
-                        <Text style={props.actTime ? styles.placeholderActive:styles.placeholder}>
-                        { props.actTime ? props.value[1].substring(0,5) : "Choose Time" }
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
-
-                </View>
-       
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-            color={"black"}
-          />
-        )}
-      </View>
-    );
-  };
 
 function RadioButton(props) {
     return (
@@ -147,10 +46,14 @@ function RadioButton(props) {
 
 export default class LoginScreen extends React.Component {
     state = {
-        date: 'Choose dateT',
-        time: 'TChoose time',
-        actDate: false,
-        actTime: false,
+        longitude: '',
+        latitude: '',
+        blood: '',
+        rhesus: '',
+        notUrgent: true,
+        urgent: false,
+        veryUrgent: false,
+        result: true,
     };
 
     componentDidMount(){
@@ -160,9 +63,6 @@ export default class LoginScreen extends React.Component {
     onRegister = () => {
         this.setState({result: true})
         this.props.navigation.navigate("RegisteredScreen")
-    }
-    onDatePick = () => {
-        console.log("pick")
     }
     render(){
         return(
@@ -198,7 +98,7 @@ export default class LoginScreen extends React.Component {
                         <View style={{flex: 3, flexDirection:'row'}}>
                            
                             <View style={{ justifyContent: 'center', paddingLeft: 10, }}>
-                                <Text style={styles.eventText}>PMI Pusat Jakarta </Text>
+                                <Text style={styles.eventText}>Event Name </Text>
                                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'center'}}>
                                     <Image
                                         source={require('../img/time.png')}
@@ -209,9 +109,7 @@ export default class LoginScreen extends React.Component {
                                         }}
                                         resizeMode={'contain'}
                                         />
-                                    <Text style={styles.normalText}>
-                                    Open hours: 09.00-16.00 WIB
-                                    </Text>
+                                    <Text style={styles.normalText}>Day, May 15 2020 | 09.00-16.00 WIB</Text>
                                 </View>
                             </View>
                         </View>
@@ -221,10 +119,14 @@ export default class LoginScreen extends React.Component {
                     </View>
                     </ImageBackground>
                 </View>
-                <View style={styles.Container}>
+                <View style={styles.subContainer2}>
                     <View style={{marginTop: 15}}>
+    
+                        <Text style={styles.normalText}>
+                        (Event description) sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
+                        </Text>
                                         
-                        <View style={{marginTop: 20, marginBottom: 20}}>
+                        <View style={{marginTop: 20}}>
                             <Text style={styles.locText}>
                                 Location
                             </Text>
@@ -233,29 +135,9 @@ export default class LoginScreen extends React.Component {
                                 Gedung Serbaguna, Jalan Basuki Rahmat
                             </Text>
                         </View>
-                        <Text style={styles.subheaderTextLeft}>
-                        Book donor appointment
-                            </Text>
-                        <DatePick
-                            
-                            value={JSON.stringify(this.state.date).split("T")}
-                            actDate = {this.state.actDate}
-                            actTime = {this.state.actTime}
-                            onPressTime = {()=>{this.setState({actTime: true})}}
-                            onPressDate = {()=>{this.setState({actDate: true})}}
-                            onChangeDate = {(date)=>{
-                                console.log("picked ", date); console.log(this.state.date); 
-                                this.setState({date: date})
-                            
-                            }
-                            
-                            }
-                        />
-                   
                         <View style={{marginTop: 20}}>
                         <Button 
                             onPress={()=>{this.onRegister()}}
-                        
                             style={styles.midButton}
                         >
                             <Text style={styles.buttonText}>

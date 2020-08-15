@@ -38,13 +38,18 @@ export default class LoginScreen extends React.Component {
                       source={require('../img/Checklist.png')}
                       style={{width: 150, height: 150}}
                   ></Image>
-                  <Text style={{...styles.subheadText, textAlign: 'left', marginTop: 20, marginBottom: 20}}>You're all set!</Text>
+                  <Text style={{...styles.subheadText, marginTop: 20, marginBottom: 10}}>
+                      You are registered!
+                    </Text>
+                    <Text style={{...styles.radioText, marginBottom: 20, paddingLeft: 10, paddingRight: 10}}>
+                    You can view your registered activities in your profile
+                    </Text>
                   <Button 
                         onPress={()=>this.props.navigation.navigate("HomeScreen")}
                         style={{...styles.midButton, width: 300, margin: 0, width: '50%'}}
                     >
                         <Text style={styles.buttonText} onPress={()=>this.props.navigation.navigate("HomeScreen")}>
-                            Let's go!
+                            Go to Home
                         </Text>
                     </Button>
               </View>
