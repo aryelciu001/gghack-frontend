@@ -8,6 +8,7 @@ import RegisterScreen from '../screen/registerScreen'
 import SignUpScreen from '../screen/signupScreen'
 import EnableLocationScreen from '../screen/enableLocationScreen'
 import HomeScreen from '../screen/homeScreen'
+import DonorScreen from '../screen/donorScreen'
 
 const AuthStackNavigator = createStackNavigator(
     {
@@ -24,7 +25,8 @@ const AuthStackNavigator = createStackNavigator(
 
 const MainStackNavigator = createStackNavigator(
     {
-        HomeScreen: {screen: HomeScreen}
+        HomeScreen: {screen: HomeScreen},
+        DonorScreen: {screen: DonorScreen},
       },
       {
         initialRouteName: "HomeScreen",

@@ -91,7 +91,7 @@ class AppPermission {
             navigator.geolocation.getCurrentPosition((position) => {
                 let initialPosition = JSON.stringify(position);
                 this.setState({ initialPosition });
-                }, error => console.log(error), {  timeout: 1000, });
+                }, error => console.log(error), {  });
             }.bind(this)
         ).catch((error) => {
             console.log(error.message);

@@ -18,21 +18,17 @@ export default class textBox extends React.Component {
     }
     render(){
         return(
-            <View style={[styles.textBox,{borderColor: this.state.generalColor, width: this.props.widthBox}]}>
+            <View style={style2.container}>
+                <Text style={[{marginLeft: 10,}, styles.inputTitle]}>
+                    {this.props.placeholder}
+                </Text>
+            <View style={[style2.upTextBox,{borderColor: this.state.generalColor, width: this.props.widthBox}]}>
                 <View style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center'}}>
-                    <Image 
-                         source={this.props.logo}
-                         style={{
-                             width: 30,
-                             height: 30,
-                            
-                         }}
-                         resizeMode={"contain"}
-                    />
+                
                     <Input
                         placeholderTextColor={this.state.generalColor}
                         value={this.props.value}
-                        placeholder={this.props.placeholder}
+                        placeholder={""}
                         keyboardType={this.props.keyboardType}
                         onChangeText={this.props.onChangeText}
                         secureTextEntry={this.props.secureTextEntry}
@@ -42,21 +38,27 @@ export default class textBox extends React.Component {
                             fontFamily: 'Gotham'
                         }}
                     />
-                    {this.props.showEye ? (
-                    <Icon
-                        style={{
-                            width: 30,
-                            height: 30,
-                        
-                        }}
-                        name={"eye-off"}
-                        onPress={this.props.onEyePress}
-                        />
-                    ) : (
-                        false
-                    )}
+                    
                 </View>
+            </View>
             </View>
         )
     }
 }
+
+const style2 = StyleSheet.create({
+    container: {
+        width: '100%',
+    },
+    upTextBox: {
+        borderWidth: 1,
+        height: 50,
+        margin: 10,
+        borderRadius: 10,
+        borderColor:'#DDDDDD',
+        padding: 5,
+        paddingLeft: 15,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+})

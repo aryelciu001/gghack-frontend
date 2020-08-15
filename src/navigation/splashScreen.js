@@ -7,8 +7,10 @@ import {
     Text,
     StatusBar,
     Button,
+    Image
   } from 'react-native';
 import {styles} from '../style'
+import { TouchableHighlight } from 'react-native-gesture-handler';
 export default class SplashScreen extends React.Component {
     
     didPress = () => {
@@ -18,10 +20,18 @@ export default class SplashScreen extends React.Component {
     render(){
         return(
             <View style={styles.LogoView}>
-                <Text>This is a NOT splash screen</Text>
-                <Button onPress={()=>{this.didPress()}}
-                title="PRESS PLS"
-                />
+               
+                <View>
+                    <TouchableHighlight onPress={()=>{this.didPress()}}>
+                    <Image 
+                        source={require("../img/logo.png")}
+                        style={{
+                            width: 168,
+                            height: 168,
+                        }}
+                    />
+                    </TouchableHighlight>
+                </View>
             </View>
         )
     }

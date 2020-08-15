@@ -44,20 +44,8 @@ export default class LoginScreen extends React.Component {
             <View style={styles.Container}>
                 <ScrollView>
                     <View>
-                        <Text>Hi, </Text>
-                        <Text>Karen Name</Text>
-                    </View>
-                    <View style={{flexDirection:'row'}}>
-                        <View>
-                            <Text>
-                                Find blood
-                            </Text>
-                        </View>
-                        <View>
-                            <Text>
-                            Donate blood
-                            </Text>
-                        </View>
+                        <Text>Location</Text>
+                        <Text>Location Name</Text>
                     </View>
                 </ScrollView>
             </View>
