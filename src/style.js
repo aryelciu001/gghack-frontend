@@ -12,8 +12,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor:'white',
         fontFamily: 'Gotham',
-        alignItems: 'center',
-        justifyContent: 'center'
     },
     LogoView: {
         justifyContent: 'center',
@@ -73,6 +71,13 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
+    headerTextLeft: {
+        color: '#E03621',
+        fontSize: 24,
+        fontFamily: 'Gotham',
+        fontWeight: 'bold',
+        textAlign: 'left',
+    },
     inputTitle: {
         color: '#707070',
         fontSize: 16,
@@ -101,5 +106,72 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    bannerHeader: {
+        width: '100%',
+        marginTop: 30,
+        height: 60,
+        shadowColor: "#dddddd",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.07,
+        shadowRadius: 4.65,
+        elevation: 6,
+        backgroundColor: 'white',
+    },
+    headerBox: {
+        width: '100%',
+        height: 80,
+        shadowColor: "#dddddd",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.07,
+        shadowRadius: 4.65,
+        elevation: 6,
+        backgroundColor: 'white',
+        justifyContent: 'flex-end',
+        paddingBottom: 15,
+        paddingLeft: 40,
+    },
+    subHead: {
+        color: '#E03621',
+        fontSize: 14,
+        fontFamily: 'Gotham',
+        textAlign: 'left',
+    },
+    headText: { 
+        color: '#E03621',
+        fontSize: 18,
+        fontFamily: 'Gotham',
+        textAlign: 'left',
+        fontWeight: 'bold',
+    },
+    boxText: { 
+        color: '#E03621',
+        fontSize: 18,
+        fontFamily: 'Gotham',
+        textAlign: 'left',
+    },
+    carousel:{
+        height: 150,
+        width: '50%',
+        margin: '3%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        shadowColor: "#dddddd",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.07,
+        shadowRadius: 4.65,
+        elevation: 6,
+        borderColor: '#CECECE',
+        borderWidth: 1,
+        padding: 8,
+    }
 })
 
