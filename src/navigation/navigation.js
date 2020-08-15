@@ -10,12 +10,15 @@ import EnableLocationScreen from '../screen/enableLocationScreen'
 import HomeScreen from '../screen/homeScreen'
 import DonorScreen from '../screen/donorScreen'
 import FindScreen from '../screen/findScreen'
+import AllSet from '../screen/allSetScreen'
+
 const AuthStackNavigator = createStackNavigator(
     {
         LoginScreen: { screen: LoginScreen },
         RegisterScreen: {screen: RegisterScreen},
         SignUpScreen: {screen: SignUpScreen},
         EnableLocationScreen: {screen: EnableLocationScreen},
+        AllSet: {screen: AllSet}
       },
       {
         initialRouteName: "RegisterScreen",
@@ -40,6 +43,7 @@ const AppStartNavigator = createSwitchNavigator(
       SplashScreen: { screen: SplashScreen },
       AuthStackNavigator: { screen: AuthStackNavigator },
       MainStackNavigator: {screen: MainStackNavigator},
+      EnableLocationScreen: {screen: EnableLocationScreen},
     },
     {
       initialRouteName: "SplashScreen",

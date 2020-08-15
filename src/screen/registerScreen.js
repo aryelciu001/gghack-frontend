@@ -12,11 +12,67 @@ import {
 import {Button} from 'native-base'
 import {styles} from '../style'
 import TextBox from '../component/textField'
+import { httpOptions, api, checkBody } from '../helpers/httpRequest'
+
 export default class LoginScreen extends React.Component {
     state = {
         email: '',
         password: '',
     }
+
+    join = () => {
+
+        let newUser = { ...this.state }
+        let url = api + ':3001/users/signup'
+        let bodyCheck = checkBody(newUser, ['email', 'password'])
+
+        if ( !newUser.email.includes('@')) {
+            console.log('emalll')
+            return;
+        }
+        
+        if (!(bodyCheck.complete)) {
+            /*
+            TODO set state to indicate missing prop
+            */
+           console.log('woi')
+        } else {
+            console.log(newUser)
+            fetch(url, { ...httpOptions.post, body: JSON.stringify(newUser) })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                //if no error
+                if (!data.error) {   
+                    this.props.navigation.navigate("SignUpScreen")
+                } else {
+                    /*
+                    TODO set state to indicate missing prop
+                    */
+                    console.log(data)
+                    switch (data.error.prop) {
+                        case "email":
+                            break
+                        case "password":
+                            break
+                        default:
+                            break
+                    }
+                }
+            })
+            .catch(err => {
+                console.log('e')
+            })
+        }
+
+        // {this.props.navigation.navigate("SignUpScreen"),
+        //                         {
+        //                             email: this.state.email,
+        //                             password: this.state.password,
+        //                         }
+        //                 }
+    }
+    
     render(){
         return(
             <View style={styles.Container}>
@@ -31,7 +87,7 @@ export default class LoginScreen extends React.Component {
                                 }}
                             />
                             <Text style={styles.titleText}>
-                                Blood
+                                Blaaaaad
                             </Text>
                         </View>
                         <TextBox 
@@ -48,12 +104,7 @@ export default class LoginScreen extends React.Component {
                             secureTextEntry
                         />
                         <Button 
-                            onPress={()=>{this.props.navigation.navigate("SignUpScreen"),
-                                {
-                                    email: this.state.email,
-                                    password: this.state.password,
-                                }
-                        }}
+                            onPress={this.join} 
                             style={styles.midButton}
                         >
                             <Text style={styles.buttonText}>
