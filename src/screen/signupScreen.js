@@ -12,6 +12,7 @@ import {
 import {Button, } from 'native-base'
 import {styles} from '../style'
 import UpText from '../component/upText'
+import Picker from '../component/picker'
 import { httpOptions, api, checkBody } from '../helpers/httpRequest'
 
 export default class LoginScreen extends React.Component {
@@ -20,7 +21,11 @@ export default class LoginScreen extends React.Component {
         name: '',
         password: '',
         email: '',
-        error: []
+        error: [],
+        blood: 'A',
+        rhesus: '+',
+        date: '',
+        weight: '',
     }
 
     signUp = () => {
@@ -83,29 +88,42 @@ export default class LoginScreen extends React.Component {
                         <UpText 
                             placeholder="Full Name"
                             widthBox= '100%'
+                            value={this.state.name}
+                            onChangeText={(text)=>{this.setState({name: text})}}
                         />
                         <UpText 
                             placeholder="Date of Birth"
                             widthBox= '50%'
+                            holder={"DD/MM/YY"}
+                            value={this.state.date}
+                            onChangeText={(text)=>{this.setState({date: text})}}
                         />
                         <View style={{flexDirection: 'row', width: '100%'}}>
                             <View style={{flex: 1,}}>
                                 <UpText 
                                     placeholder="Weight"
                                     widthBox= '100%'
+                                    value={this.state.weight}
+                                    onChangeText={(text)=>{this.setState({weight: text})}}
                                 />
                             </View>
                             <View style={{flex: 1}}/>
                                 <View style={{flex: 1,  marginLeft: 5}}>
-                                <UpText 
+                                <Picker 
                                     placeholder="Blood"
                                     widthBox= '100%'
+                                    pickerArray={['A','B','AB','O']}
+                                    value={this.state.blood}
+                                    onValueChange={(text) => this.setState({blood: text})}
                                 />
                                 </View>
                                 <View style={{flex: 1, marginLeft: 10}}>
-                               <UpText 
+                               <Picker 
                                     placeholder="Rhesus"
                                     widthBox= '100%'
+                                    value={this.state.rhesus}
+                                    pickerArray={['+','-']}
+                                    onValueChange={(text) => this.setState({rhesus: text})}
                                 />
                                 </View>
                        

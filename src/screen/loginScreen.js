@@ -58,6 +58,7 @@ export default class LoginScreen extends React.Component {
         }
     }
     
+   
     render(){
         const {error} = this.state
         return(
@@ -92,13 +93,34 @@ export default class LoginScreen extends React.Component {
                         />
                         {error.props === 'password' ? <Text style={styles.feedback}>{error.msg}</Text> : null}
                         <Button 
-                            onPress={this.join} 
+                            onPress={()=>this.join()} 
                             style={styles.midButton}
                         >
                             <Text style={styles.buttonText}>
                                 Log In
                             </Text>
                         </Button>
+                        <Text
+                                 onPress={()=>{this.props.navigation.navigate("RegisterScreen")}}
+                                 style={[styles.midText, {marginTop: 40, textDecorationLine: 'underline'}]}
+                            >
+                                Don't have an account?
+                            </Text>
+
+                        {/*
+                        <Text 
+                     
+                            style={[styles.midText, {marginTop: 40,}]}
+                        >
+                            Don't have an account? {" "}
+                            <Text
+                                 onPress={()=>{this.props.navigation.navigate("RegisterScreen")}}
+                                 style={[styles.midText, {marginTop: 40, textDecorationLine: 'underline'}]}
+                            >
+                                Create an account
+                            </Text>
+                        </Text>
+                        */}
                     </View>
                 </View>
             </View>
