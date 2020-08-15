@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'Hacks' do
+target 'Haemo' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
@@ -14,7 +14,7 @@ target 'Hacks' do
 
   pod 'react-native-gps-state', :path => '../node_modules/react-native-gps-state'
 
-  target 'HacksTests' do
+  target 'HaemoTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -29,10 +29,10 @@ target 'Hacks' do
   end
 end
 
-target 'Hacks-tvOS' do
-  # Pods for Hacks-tvOS
+target 'Haemo-tvOS' do
+  # Pods for Haemo-tvOS
 
-  target 'Hacks-tvOSTests' do
+  target 'Haemo-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
