@@ -6,12 +6,12 @@ import {
     View,
     Text,
     StatusBar,
-    Button,
     KeyboardAvoidingView,
     Image
   } from 'react-native';
   
 import {styles} from '../style'
+import {Button} from 'native-base'
 import TextBox from '../component/textField'
 import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -39,12 +39,14 @@ export default class LoginScreen extends React.Component {
                       style={{width: 150, height: 150}}
                   ></Image>
                   <Text style={{...styles.titleText, textAlign: 'left', marginTop: 20, marginBottom: 20}}>You're all set!</Text>
-                  <View style={{width: '50%', alignItems: 'center'}}>
-                    <Text
-                        style={{...styles.btnFromText, width: '100%'}}
+                  <Button 
                         onPress={()=>this.props.navigation.navigate("HomeScreen")}
-                    >Let's go!</Text>
-                  </View>
+                        style={{...styles.midButton, width: 300, margin: 0, width: '50%'}}
+                    >
+                        <Text style={styles.buttonText} onPress={()=>this.props.navigation.navigate("HomeScreen")}>
+                            Let's go!
+                        </Text>
+                    </Button>
               </View>
             </View>
         )

@@ -1,16 +1,12 @@
 import React from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
     View,
     Text,
-    StatusBar,
-    Button,
     KeyboardAvoidingView,
     Image
   } from 'react-native';
   
+import {Button} from 'native-base'
 import {styles} from '../style'
 import TextBox from '../component/textField'
 import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
@@ -27,30 +23,31 @@ export default class LoginScreen extends React.Component {
     render(){
         return(
             <View style={styles.Container}>
-                <KeyboardAvoidingView>
-                    <View>
-                        <View style={{
-                            flex:1,
-                            flexDirection: 'column',
-                            justifyContent:'center'
-                        }}>
-                            <Image
-                                source={require('../img/enableLoc.png')}
-                                style={{marginBottom: 20}}
-                            ></Image>
-                            <Text style={{...styles.titleText, textAlign: 'left'}}>You are almost done!</Text>
-                            <Text style={{...styles.midText, textAlign: 'left', marginTop: 20, marginBottom: 20}}>
-                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
-                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
-                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
+                <View style={styles.Wrapper}>
+                    <View style={{
+                        flexDirection: 'column',
+                        width: '100%'
+                    }}>
+                        <Image
+                            source={require('../img/enableLoc.png')}
+                            style={{marginBottom: 20}}
+                        ></Image>
+                        <Text style={{...styles.titleText, textAlign: 'left'}}>You are almost done!</Text>
+                        <Text style={{...styles.midText, textAlign: 'justify', marginTop: 20, marginBottom: 20}}>
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
+                        </Text>
+                        <Button 
+                            onPress={this.join} 
+                            style={{...styles.midButton, width: 300, margin: 0, alignSelf: 'flex-start', width: '100%'}}
+                        >
+                            <Text style={styles.buttonText} onPress={()=>this.props.navigation.navigate("AllSet")}>
+                                Allow Location Service
                             </Text>
-                            <Text
-                                style={styles.btnFromText}
-                                onPress={()=>this.props.navigation.navigate("AllSet")}
-                            >Allow Location Service</Text>
-                        </View>
+                        </Button>
                     </View>
-                </KeyboardAvoidingView>
+                </View>
             </View>
         )
     }

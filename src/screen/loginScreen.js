@@ -1,90 +1,106 @@
 import React from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
     View,
     Text,
-    StatusBar,
-    Button,
-    KeyboardAvoidingView,
     Image,
+    Keyboard
   } from 'react-native';
+import {Button} from 'native-base'
 import {styles} from '../style'
 import TextBox from '../component/textField'
-
-import {api, httpOptions, checkBody} from '../helpers/httpRequest'
+import { httpOptions, api, checkBody } from '../helpers/httpRequest'
 
 export default class LoginScreen extends React.Component {
+    state = {
+        email: '',
+        password: '',
+        error: {}
+    }
 
-    signIn = () => {
-        //Retrieve from state
-        let user = {
-            password: 'friends',
-            email: "chandler.m.bing@gmail.com"
-        }
+    join = () => {
 
+        Keyboard.dismiss(0)
+
+        let newUser = { ...this.state }
         let url = api + ':3001/users/signin'
-            
-        let bodyCheck = checkBody(user, ['email', 'password'])
+        let bodyCheck = checkBody(newUser, ['email', 'password'])
 
+        if ( !newUser.email.includes('@')) {
+            this.setState({...this.state, error: {
+                props: 'email',
+                msg: 'It does not look like an email. Try using one with @'
+            }})
+            return;
+        }
+        
         if (!(bodyCheck.complete)) {
-            /*
-            TODO set state to indicate missing prop
-            */
+            this.setState({...this.state, error: {
+                props: bodyCheck.missing,
+                msg: `Your have not inserted your ${bodyCheck.missing}`
+            }})
         } else {
-            fetch(url, { ...httpOptions.post, body: JSON.stringify(user) })
-            .then(res => res.json())
-            .then(data => {
-                //if no error
-                if (!data.error) {   
-                    console.log("User Logged In!")
-                } else {
-                    /*
-                    TODO set state to indicate missing prop
-                    */
-                    console.log(data)
-                    switch (data.error.prop) {
-                        case "email":
-                            break
-                        case "password":
-                            break
-                        default:
-                            break
+            if (newUser.error) delete newUser.error
+            this.setState({...this.state, error: {}}, ()=>{
+                fetch(url, { ...httpOptions.post, body: JSON.stringify(newUser) })
+                .then(res => res.json())
+                .then(data => {
+                    //if no error
+                    if (!data.error) {   
+                        this.props.navigation.navigate("HomeScreen")
+                    } else {
+                        this.setState({...this.state, error: data.error})
                     }
-                }
-            })
-            .catch(err => {
-                console.log('e')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
             })
         }
     }
-
+    
     render(){
+        const {error} = this.state
         return(
             <View style={styles.Container}>
-                <KeyboardAvoidingView>
-                    <View style={styles.insideView}>
-                        <View>
+                <View style={styles.Wrapper}>
+                    <View style={[styles.insideView, {justifyContent: 'center'}]}>
+                        <View style={{marginBottom: 30}}>
                             <Image 
                                 source={require("../img/logo.png")}
                                 style={{
-                                    width: 82,
-                                    height: 82,
+                                    width: 100,
+                                    height: 100,
                                 }}
                             />
+                            <Text style={styles.titleText}>
+                                Blaaaaad
+                            </Text>
                         </View>
-                        <Text>
-                            Sign In
-                        </Text>
-                        <TextBox placeholder="Email"/>
-                        <TextBox placeholder="Password"/>
-                        <Button onPress={this.signIn}
-                         title="Log in"
+                        <TextBox 
+                            placeholder="Email"
+                            value = {this.state.email}
+                            onChangeText = {(text)=>{this.setState({email: text})}}
+                            logo = {require('../img/Mail.png')}
                         />
-                        <Text onPress={()=>{this.props.navigation.navigate("RegisterScreen")}}>I don't have an account</Text>
+                        {error.props === 'email' ? <Text style={styles.feedback}>{error.msg}</Text> : null}
+                        <TextBox 
+                            placeholder="Password"
+                            value = {this.state.password}
+                            onChangeText = {(text)=>{this.setState({password: text})}}
+                            logo = {require('../img/Pass.png')}
+                            secureTextEntry
+                        />
+                        {error.props === 'password' ? <Text style={styles.feedback}>{error.msg}</Text> : null}
+                        <Button 
+                            onPress={this.join} 
+                            style={styles.midButton}
+                        >
+                            <Text style={styles.buttonText}>
+                                Log In
+                            </Text>
+                        </Button>
                     </View>
-                </KeyboardAvoidingView>
+                </View>
             </View>
         )
     }

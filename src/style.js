@@ -13,6 +13,16 @@ export const styles = StyleSheet.create({
         backgroundColor:'white',
         fontFamily: 'Gotham',
     },
+    Wrapper: {
+        flex: 1, 
+        width: "100%", 
+        alignItems:"center", 
+        justifyContent:"center"
+    },
+    feedback: {
+        fontSize: 14,
+        color: 'red'
+    },
     LogoView: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -21,7 +31,6 @@ export const styles = StyleSheet.create({
     insideView:{
         alignItems: 'center',
         justifyContent: 'center',
-        flex: 1,
         width: '100%',
     },
     textBox: {

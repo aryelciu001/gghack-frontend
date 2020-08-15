@@ -13,7 +13,7 @@ export const httpOptions = {
   }
 }
 
-export const api = "http://10.40.0.138"
+export const api = "http://10.65.0.54"
 
 
 /*

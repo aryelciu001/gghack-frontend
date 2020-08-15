@@ -1,13 +1,9 @@
 import React from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
     View,
     Text,
-    StatusBar,
-    KeyboardAvoidingView,
     Image,
+    Keyboard
   } from 'react-native';
 import {Button} from 'native-base'
 import {styles} from '../style'
@@ -18,65 +14,56 @@ export default class LoginScreen extends React.Component {
     state = {
         email: '',
         password: '',
+        error: {}
     }
 
     join = () => {
+
+        Keyboard.dismiss(0)
 
         let newUser = { ...this.state }
         let url = api + ':3001/users/signup'
         let bodyCheck = checkBody(newUser, ['email', 'password'])
 
         if ( !newUser.email.includes('@')) {
-            console.log('emalll')
+            this.setState({...this.state, error: {
+                props: 'email',
+                msg: 'It does not look like an email. Try using one with @'
+            }})
             return;
         }
         
         if (!(bodyCheck.complete)) {
-            /*
-            TODO set state to indicate missing prop
-            */
-           console.log('woi')
+            this.setState({...this.state, error: {
+                props: bodyCheck.missing,
+                msg: `Your have not inserted your ${bodyCheck.missing}`
+            }})
         } else {
-            console.log(newUser)
-            fetch(url, { ...httpOptions.post, body: JSON.stringify(newUser) })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                //if no error
-                if (!data.error) {   
-                    this.props.navigation.navigate("SignUpScreen")
-                } else {
-                    /*
-                    TODO set state to indicate missing prop
-                    */
+            if (newUser.error) delete newUser.error
+            this.setState({...this.state, error: {}}, ()=>{
+                fetch(url, { ...httpOptions.post, body: JSON.stringify(newUser) })
+                .then(res => res.json())
+                .then(data => {
                     console.log(data)
-                    switch (data.error.prop) {
-                        case "email":
-                            break
-                        case "password":
-                            break
-                        default:
-                            break
+                    //if no error
+                    if (!data.error) {   
+                        this.props.navigation.navigate("SignUpScreen")
+                    } else {
+                        this.setState({...this.state, error: data.error})
                     }
-                }
-            })
-            .catch(err => {
-                console.log('e')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
             })
         }
-
-        // {this.props.navigation.navigate("SignUpScreen"),
-        //                         {
-        //                             email: this.state.email,
-        //                             password: this.state.password,
-        //                         }
-        //                 }
     }
     
     render(){
+        const {error} = this.state
         return(
             <View style={styles.Container}>
-                <KeyboardAvoidingView>
+                <View style={styles.Wrapper}>
                     <View style={[styles.insideView, {justifyContent: 'center'}]}>
                         <View style={{marginBottom: 30}}>
                             <Image 
@@ -96,6 +83,7 @@ export default class LoginScreen extends React.Component {
                             onChangeText = {(text)=>{this.setState({email: text})}}
                             logo = {require('../img/Mail.png')}
                         />
+                        {error.props === 'email' ? <Text style={styles.feedback}>{error.msg}</Text> : null}
                         <TextBox 
                             placeholder="Password"
                             value = {this.state.password}
@@ -103,6 +91,7 @@ export default class LoginScreen extends React.Component {
                             logo = {require('../img/Pass.png')}
                             secureTextEntry
                         />
+                        {error.props === 'password' ? <Text style={styles.feedback}>{error.msg}</Text> : null}
                         <Button 
                             onPress={this.join} 
                             style={styles.midButton}
@@ -118,7 +107,7 @@ export default class LoginScreen extends React.Component {
                             I already have an account
                         </Text>
                     </View>
-                </KeyboardAvoidingView>
+                </View>
             </View>
         )
     }
