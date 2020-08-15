@@ -12,6 +12,9 @@ import {
   } from 'react-native';
 import {styles} from '../style'
 import TextBox from '../component/textField'
+
+import {api, httpOptions, checkBody} from '../helpers/httpRequest'
+
 export default class LoginScreen extends React.Component {
 
     signIn = () => {

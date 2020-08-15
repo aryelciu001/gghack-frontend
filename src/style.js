@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     insideView:{
         alignItems: 'center',
         justifyContent: 'center',
-        height: 500,
+        flex: 1,
         width: '100%',
     },
     textBox: {
@@ -101,5 +101,16 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    btnFromText: {
+        width: '100%',
+        backgroundColor: '#F25846',
+        color: 'white',
+        paddingTop: 14,
+        paddingBottom: 14,
+        textAlign: "center",
+        fontWeight: 'bold',
+        fontSize: 18,
+        borderRadius: 10,
+    }
 })
 

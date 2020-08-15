@@ -7,12 +7,14 @@ import {
     Text,
     StatusBar,
     Button,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Image
   } from 'react-native';
   
 import {styles} from '../style'
 import TextBox from '../component/textField'
 import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default class LoginScreen extends React.Component {
     
@@ -26,14 +28,27 @@ export default class LoginScreen extends React.Component {
         return(
             <View style={styles.Container}>
                 <KeyboardAvoidingView>
-                    <View style={styles.insideView}>
-                        <Text>
-                            Almost done!
-                        </Text>
-                        <Button onPress={()=>{this.handleEnable()}}
-                        title="Enable Location"
-                        />
-                        <Text onPress={()=>{this.props.navigation.navigate("LoginScreen")}}>I already have an account</Text>
+                    <View>
+                        <View style={{
+                            flex:1,
+                            flexDirection: 'column',
+                            justifyContent:'center'
+                        }}>
+                            <Image
+                                source={require('../img/enableLoc.png')}
+                                style={{marginBottom: 20}}
+                            ></Image>
+                            <Text style={{...styles.titleText, textAlign: 'left'}}>You are almost done!</Text>
+                            <Text style={{...styles.midText, textAlign: 'left', marginTop: 20, marginBottom: 20}}>
+                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
+                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
+                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
+                            </Text>
+                            <Text
+                                style={styles.btnFromText}
+                                onPress={()=>this.props.navigation.navigate("AllSet")}
+                            >Allow Location Service</Text>
+                        </View>
                     </View>
                 </KeyboardAvoidingView>
             </View>
