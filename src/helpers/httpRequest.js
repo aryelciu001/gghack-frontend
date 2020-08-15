@@ -1,3 +1,5 @@
+export const api = "https://haemo.herokuapp.com"
+
 export const httpOptions = {
   post: {
     method: 'POST',
@@ -12,9 +14,6 @@ export const httpOptions = {
     }
   }
 }
-
-export const api = "http://10.65.0.54"
-
 
 /*
 Check for completeness of the to-be-sent body
