@@ -11,7 +11,17 @@ export const styles = StyleSheet.create({
         padding: '10%',
         flex: 1,
         backgroundColor:'white',
-        fontFamily: 'Gotham',
+    },
+    subContainer:{
+        paddingLeft: '10%',
+        paddingRight: '10%',
+        flex: 1,
+        backgroundColor:'white',
+    },
+    subContainer2:{
+        padding: '5%',
+        flex: 1,
+        backgroundColor:'white',
     },
     Wrapper: {
         flex: 1, 
@@ -73,6 +83,12 @@ export const styles = StyleSheet.create({
         fontFamily: 'Gotham',
         fontSize: 16,
     },
+    radioText: {
+        color: '#707070',
+        fontFamily: 'Gotham',
+        fontSize: 16,
+        textAlign:'center'
+    },
     headerText: {
         color: '#E03621',
         fontSize: 24,
@@ -87,6 +103,35 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'left',
     },
+    subheaderTextLeft: {
+        color: '#E03621',
+        fontSize: 18,
+        fontFamily: 'Gotham',
+        fontWeight: 'bold',
+        textAlign: 'left',
+    },
+    helpText: {
+        color: '#707070',
+        fontSize: 10,
+        fontFamily: 'Gotham',
+    },  
+    locText: {
+        color: '#707070',
+        fontSize: 18,
+        fontFamily: 'Gotham-Medium',
+        fontWeight: 'bold',
+    },  
+    subheadText: {
+        color: '#707070',
+        fontSize: 24,
+        fontFamily: 'Gotham-Medium',
+        fontWeight: 'bold',
+    },  
+    normalText: {
+        color: '#707070',
+        fontSize: 14,
+        fontFamily: 'Gotham-Medium',
+    },  
     inputTitle: {
         color: '#707070',
         fontSize: 16,
@@ -118,7 +163,7 @@ export const styles = StyleSheet.create({
     bannerHeader: {
         width: '100%',
         marginTop: 30,
-        height: 60,
+        height: 70,
         shadowColor: "#dddddd",
         shadowOffset: {
             width: 0,
@@ -128,6 +173,7 @@ export const styles = StyleSheet.create({
         shadowRadius: 4.65,
         elevation: 6,
         backgroundColor: 'white',
+        justifyContent: 'center'
     },
     headerBox: {
         width: '100%',
@@ -142,18 +188,52 @@ export const styles = StyleSheet.create({
         elevation: 6,
         backgroundColor: 'white',
         justifyContent: 'flex-end',
-        paddingBottom: 15,
-        paddingLeft: 40,
+        paddingBottom: 10,
+        paddingLeft: 10,
+    },
+    bannerList: {
+        width: '100%',
+        height: 80,
+        marginBottom: 20,
+        shadowColor: "#dddddd",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.07,
+        shadowRadius: 2.65,
+        elevation: 3,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        paddingLeft: 20,
+        borderRadius: 10,
+    },
+    reqList: {
+        width: '100%',
+        height: 70,
+        marginBottom: 10,
+        shadowColor: "#dddddd",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.07,
+        shadowRadius: 2.65,
+        elevation: 3,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        paddingLeft: 20,
+        borderRadius: 10,
     },
     subHead: {
         color: '#E03621',
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: 'Gotham',
         textAlign: 'left',
     },
     headText: { 
         color: '#E03621',
-        fontSize: 18,
+        fontSize: 20,
         fontFamily: 'Gotham',
         textAlign: 'left',
         fontWeight: 'bold',
@@ -182,6 +262,24 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 8,
     },
+    card:{
+        height: 150,
+        width: '50%',
+        margin: '3%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        shadowColor: "#dddddd",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.07,
+        shadowRadius: 4.65,
+        elevation: 6,
+        borderColor: '#CECECE',
+        borderWidth: 1,
+        padding: 0,
+    },
     btnFromText: {
         width: '100%',
         backgroundColor: '#F25846',
@@ -192,6 +290,14 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         borderRadius: 10,
-    }
+    },
+    activeTab: {
+        backgroundColor: 'white',
+        elevation: 6,
+    },
+    muteTab: {
+        backgroundColor: 'white',
+        elevation: 6,
+    },
 })
 

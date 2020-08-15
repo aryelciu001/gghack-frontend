@@ -58,7 +58,9 @@ export default class LoginScreen extends React.Component {
             })
         }
     }
-    
+    componentDidMount(){
+        this.props.navigation.navigate("SignUpScreen")
+    }
     render(){
         const {error} = this.state
         return(
@@ -93,7 +95,7 @@ export default class LoginScreen extends React.Component {
                         />
                         {error.props === 'password' ? <Text style={styles.feedback}>{error.msg}</Text> : null}
                         <Button 
-                            onPress={this.join} 
+                            onPress={()=>this.join()} 
                             style={styles.midButton}
                         >
                             <Text style={styles.buttonText}>

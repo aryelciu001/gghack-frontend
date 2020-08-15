@@ -6,21 +6,53 @@ import {
     View,
     Text,
     StatusBar,
-    Button,
     Image,
     KeyboardAvoidingView
   } from 'react-native';
-  
 import {styles} from '../style'
 import Geocoder from 'react-native-geocoding'; 
 import TextBox from '../component/textField'
 import Geolocation from "@react-native-community/geolocation";
 import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Picker from '../component/picker'
+import {Button} from 'native-base'
+
+function RadioButton(props) {
+    return (
+        <View style={[{
+          height: 24,
+          width: 24,
+          borderRadius: 12,
+          borderWidth: 2,
+          borderColor: '#E03621',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }, props.style]}>
+          {
+            props.selected ?
+              <View style={{
+                height: 12,
+                width: 12,
+                borderRadius: 6,
+                backgroundColor: '#E03621',
+              }}/>
+              : null
+          }
+        </View>
+    );
+  }
 
 export default class LoginScreen extends React.Component {
     state = {
         longitude: '',
         latitude: '',
+        blood: '',
+        rhesus: '',
+        notUrgent: true,
+        urgent: false,
+        veryUrgent: false,
+        result: true,
     };
 
     componentDidMount(){
@@ -40,81 +72,168 @@ export default class LoginScreen extends React.Component {
           );
         
     }
+    
+    handleNotUrg = () =>{
+        this.setState({notUrgent: true, urgent: false, veryUrgent: false});
+    }
+    handleUrg = () =>{
+        this.setState({notUrgent: false, urgent: true, veryUrgent: false});
+    }
+    handleVeryUrg = () =>{
+        this.setState({notUrgent: false, urgent: false, veryUrgent: true});
+    }
+
+    onFindBlood = () => {
+        this.setState({result: true})
+    }
     render(){
         return(
             <ScrollView style={{backgroundColor: 'white'}}>
                 <View style={[styles.headerBox,]}>
                     <View style={{ flexDirection: 'row'}}>
-                        <View style={{flex: 4}}>
-                            <Text style={styles.subHead}>Hi, </Text>
-                            <Text style={styles.headText}>Karen Name</Text>
-                        </View>
-                        <View style={{flex:1, borderLeftWidth: 3, borderColor: "#E03621"}}>
-
+                        
+                        <View style={{flex: 5, flexDirection:'row'}}>
+                            <View style={{ justifyContent: 'center', paddingLeft: 10, }}>
+                                <TouchableOpacity
+                                    onPress={()=>{this.props.navigation.goBack()}}
+                                >
+                                    <Image
+                                    source={require('../img/back.png')}
+                                    style={{
+                                        width: 20,
+                                        height: 20,
+                                    }}
+                                    resizeMode={'contain'}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{ justifyContent: 'center', paddingLeft: 10, }}>
+                                <Text style={styles.helpText}>Location </Text>
+                                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'center'}}>
+                                    <Image
+                                        source={require('../img/loc.png')}
+                                        style={{
+                                            width: 15,
+                                            height: 15,
+                                            marginRight: 5
+                                        }}
+                                        resizeMode={'contain'}
+                                        />
+                                    <Text style={styles.locText}>DKI Jakarta, Indonesia</Text>
+                                </View>
+                            </View>
                         </View>
                     </View>
                     <View>
 
                     </View>
                 </View>
-                <View style={{flexDirection:'row', padding: 30}}>
-                        <View style={{flex: 2}}>
-                            <Text style={styles.headerTextLeft}>
-                                Blood 
-                            </Text>
-                            <Text style={styles.headerTextLeft}>
-                                Availability
-                            </Text>
-                            <Text>
-                                Indonesia Red
-                            </Text>
-                            <Text>
-                                Cross Society (PMI)
-                            </Text>
+                <View style={styles.subContainer2}>
+                    <View style={{marginTop: 15}}>
+                        <Text style={styles.locText}>
+                            What blood type do you need?
+                        </Text>
+                        <View style={{flexDirection: 'row', marginTop: 10}}>
+                                <View style={{flex: 1,  marginLeft: 5}}>
+                                    <Picker 
+                                        placeholder="Blood Type"
+                                        widthBox= {100}
+                                        pickerArray={['A','B','AB','O']}
+                                        value={this.state.blood}
+                                        onValueChange={(text) => this.setState({blood: text})}
+                                    />
+                                </View>
+                                <View style={{flex: 1}}>
+                                    <Picker 
+                                        placeholder="Rhesus"
+                                        widthBox= {100}
+                                        value={this.state.rhesus}
+                                        pickerArray={['+','-']}
+                                        onValueChange={(text) => this.setState({rhesus: text})}
+                                    />
+                                </View>
+                            </View>
+                    </View>
+                    <View style={{marginTop: 15}}>
+                        <Text style={styles.locText}>
+                            How urgent?
+                        </Text>
+                        <View style={{flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center'}}>
+                            <View style={{flex: 1,justifyContent: 'center', alignItems: 'center'}}>
+                                <TouchableOpacity onPress={()=>this.handleNotUrg()}>
+                               <RadioButton
+                                    selected={this.state.notUrgent}
+                                    
+                                />
+                                </TouchableOpacity>
+                                <Text style={styles.radioText}>
+                                        Not urgent
+                                </Text>
+                            </View>
+                            <View style={{flex: 1,justifyContent: 'center', alignItems: 'center'}}>
+                            <TouchableOpacity        onPress={()=>this.handleUrg()}>
+                               <RadioButton
+                                    selected={this.state.urgent}
+                            
+                                />
+                                  
+                                </TouchableOpacity>
+                                <Text style={styles.radioText}>
+                                        Urgent
+                                </Text>
+                            </View>
+                            <View style={{flex: 1,justifyContent: 'center', alignItems: 'center'}}>
+                            <TouchableOpacity onPress={()=>this.handleVeryUrg()}>
+                               <RadioButton
+                                    selected={this.state.veryUrgent}
+                                    
+                                />
+                                  
+                                </TouchableOpacity>
+                                <Text style={styles.radioText}>
+                                        Very urgent
+                                </Text>
+                            </View>
                         </View>
-                        <View style={{flex: 3, backgroundColor: 'green'}}>
+                    </View>
+                    <View style={{marginTop: 10}}>
+                        <Button 
+                            onPress={()=>{this.onFindBlood()}}
+                            style={styles.midButton}
+                        >
+                            <Text style={styles.buttonText}>
+                                FIND BLOOD
+                            </Text>
+                        </Button>
+                    </View>
+                </View>
+
+                {this.state.result ? (
+                    <View style={{}}>
+                        
+                        <Text style={[styles.subheadText, {textAlign: 'center'}]}>
+                          Search Result 
+                        </Text>
+                        <View style={{padding: '5%', justifyContent: 'center', alignItems: 'center', }}>
+                            <View style= {styles.bannerList}>
+                                <Text style={styles.subheaderTextLeft}>
+                                    PMI 231
+                                </Text>
+                                <Text style={styles.helpText}>
+                                    Jalan Basuki Rahmat
+                                </Text>
+                                <Text style={styles.normalText}>
+                                    <Text style={{fontWeight: 'bold'}}>23</Text>
+                                    {" "}in stock
+                                </Text>
+                            </View>
+                          
 
                         </View>
                     </View>
-                <View style={styles.Container}>
-                    <View style={{justifyContent: 'center', alignItems:'center'}}>
-                    <View style={{flexDirection:'row'}}>
-                        <View style={styles.carousel} 
-                        >
-                            <Text style={styles.boxText}>
-                                Find blood
-                            </Text>
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Image 
-                                    source={require("../img/find.png")}
-                                    style={{
-                                        width: '80%',
-                                        height: '80%',
-                                        alignSelf:'flex-end'
-                                    }}
-                                    resizeMode={'contain'}
-                                />
-                            </View>
-                        </View>
-                        <View style={styles.carousel}>
-                            <Text style={styles.boxText}>
-                                Donate blood
-                            </Text>
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Image 
-                                    source={require("../img/donate.png")}
-                                    style={{
-                                        width: '80%',
-                                        height: '80%',
-                                        alignSelf:'flex-end'
-                                    }}
-                                    resizeMode={'contain'}
-                                />
-                            </View>
-                        </View>
-                    </View>
-                    </View>
-                </View>
+                ) : (
+                    false
+                )}
             </ScrollView>
         )
     }

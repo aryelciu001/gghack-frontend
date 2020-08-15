@@ -8,13 +8,15 @@ import {
     StatusBar,
     Button,
     Image,
+    
   } from 'react-native';
-import {Input} from 'native-base';
+import {Input, Picker} from 'native-base';
 import {styles} from '../style';
 
 export default class textBox extends React.Component {
     state = {
-        generalColor: '#CECECE'
+        generalColor: '#CECECE',
+        chosen: 'A'
     }
     render(){
         return(
@@ -23,22 +25,20 @@ export default class textBox extends React.Component {
                     {this.props.placeholder}
                 </Text>
             <View style={[style2.upTextBox,{borderColor: this.state.generalColor, width: this.props.widthBox}]}>
-                <View style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center'}}>
-                
-                    <Input
-                        placeholderTextColor={this.state.generalColor}
-                        value={this.props.value}
-                        placeholder={this.props.holder}
-                        keyboardType={this.props.keyboardType}
-                        onChangeText={this.props.onChangeText}
-                        secureTextEntry={this.props.secureTextEntry}
-                        onBlur = {()=>{this.setState({generalColor: '#CECECE'})}}
-                        onFocus={ () => {this.setState({generalColor: '#707070'})} }
-                        style={{
-                            fontFamily: 'Gotham',
-                            color: '#707070'
-                        }}
-                    />
+                <View style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center', paddingLeft: 10}}>
+                <Picker
+                    selectedValue={this.props.value}
+                    style={{height: 50, width: 90}}
+                    onValueChange={this.props.onValueChange
+                    }>
+                     {this.props.pickerArray.map(data => (
+                        <Picker.Item
+                            key={data}
+                            label={data}
+                            value={data}
+                        />
+                    ))}
+                </Picker>
                     
                 </View>
             </View>
