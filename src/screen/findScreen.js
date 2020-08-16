@@ -17,6 +17,7 @@ import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Picker from '../component/picker'
 import {Button} from 'native-base'
+import { httpOptions, api, checkBody } from '../helpers/httpRequest'
 
 function RadioButton(props) {
     return (
@@ -43,7 +44,7 @@ function RadioButton(props) {
     );
   }
 
-export default class LoginScreen extends React.Component {
+export default class FindScreen extends React.Component {
     state = {
         longitude: '',
         latitude: '',
@@ -86,7 +87,25 @@ export default class LoginScreen extends React.Component {
     }
 
     onFindBlood = () => {
-        this.setState({result: true})
+        let req = {
+            bloodType: this.state.blood,
+            rhesus: this.state.rhesus,
+            quantity: Number(this.state.qty)
+        }
+        //dont have time to handle lat long to city
+        req.location = 'jakarta'
+        let url = api + '/ask'
+        fetch(url, { ...httpOptions.post, body: req })
+            .then(res =>  (
+                res.json()
+            ))
+            .then(data => {
+                this.setState({...this.state, nearbyRC: data})
+            })
+            .catch(err => {
+                console.log("err catch")
+                console.log(err)
+            })
     }
     onReq = () => {
         this.props.navigation.navigate("ReqFormScreen")
