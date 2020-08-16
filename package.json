@@ -18,6 +18,7 @@
     "@react-navigation/bottom-tabs": "^5.8.0",
     "@react-navigation/native": "^5.7.3",
     "native-base": "^2.13.13",
+    "node": "^12.4.0",
     "os": "^0.1.1",
     "react": "16.13.1",
     "react-native": "0.63.2",

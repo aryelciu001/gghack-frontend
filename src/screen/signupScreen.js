@@ -15,7 +15,7 @@ import UpText from '../component/upText'
 import Picker from '../component/picker'
 import { httpOptions, api, checkBody } from '../helpers/httpRequest'
 
-export default class LoginScreen extends React.Component {
+export default class SignUpScreen extends React.Component {
 
     state = {
         name: '',
@@ -37,7 +37,7 @@ export default class LoginScreen extends React.Component {
             email: "chandler.m.bing@gmail.com"
         }
 
-        let url = api + ':3001/users/signup'
+        let url = api + '/users/signup'
             
         let bodyCheck = checkBody(newUser, ['name', 'email', 'password'])
 

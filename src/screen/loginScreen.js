@@ -57,13 +57,12 @@ export default class LoginScreen extends React.Component {
 
                 console.log("trying to fetch")
                 fetch(url, { ...httpOptions.post, body: JSON.stringify(newUser) })
-                .then(res =>  {
-                    console.log("res")
-                    res.json();
-                    console.log("json finish")
-                })
+                .then(res =>  (
+                    res.json()
+                ))
                 .then(data => {
                     console.log("fetching succeed")
+                    console.log(data)
                     //if no error
                     if (!data.error) {   
                         this.props.navigation.navigate("HomeScreen")

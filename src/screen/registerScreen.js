@@ -10,7 +10,7 @@ import {styles} from '../style'
 import TextBox from '../component/textField'
 import { httpOptions, api, checkBody } from '../helpers/httpRequest'
 
-export default class LoginScreen extends React.Component {
+export default class RegisterScreen extends React.Component {
     state = {
         email: '',
         password: '',
@@ -22,7 +22,7 @@ export default class LoginScreen extends React.Component {
         Keyboard.dismiss(0)
 
         let newUser = { ...this.state }
-        let url = api + ':3001/users/signup'
+        let url = api + '/users/signup'
         let bodyCheck = checkBody(newUser, ['email', 'password'])
 
         if ( !newUser.email.includes('@')) {
