@@ -159,7 +159,7 @@ export default class LoginScreen extends React.Component {
 
     onRegister = () => {
         this.setState({result: true})
-        this.props.navigation.navigate("RegisteredScreen")
+        this.props.navigation.navigate("BookSuccessScreen")
     }
     onDatePick = () => {
         console.log("pick")
@@ -167,17 +167,8 @@ export default class LoginScreen extends React.Component {
     render(){
         return(
             <ScrollView style={{backgroundColor: 'white'}}>
-                <View style={[styles.tallHeader,]}>
-                <ImageBackground
-                        source={require("../img/event.png")}
-                        style={{
-                            width: '100%', height: '100%', 
-                        
-                    }}
-                    height={'60%'}
-
-                                resizeMode={'contain'}
-                              >
+                <View style={[styles.tallHeader,{flexDirection: 'row'}]}>
+                    <View style={{flex: 4}}>
                     <View style={{flex:1}}/>
                     <View style={{ justifyContent: 'flex-start',flex:1, paddingLeft: 10, }}>
                                 <TouchableOpacity
@@ -216,22 +207,43 @@ export default class LoginScreen extends React.Component {
                             </View>
                         </View>
                     </View>
-                    <View>
-
                     </View>
-                    </ImageBackground>
+
+                    <View style={{flex:2}}> 
+                        <ImageBackground
+                            source={require("../img/search.png")}
+                            style={{
+                                width: '100%', height: '100%', 
+                            
+                        }}
+                        height={'60%'}
+
+                                    resizeMode={'contain'}
+                                />
+                    </View>
+              
+                  
                 </View>
+              
                 <View style={styles.Container}>
                     <View style={{marginTop: 15}}>
                                         
-                        <View style={{marginTop: 20, marginBottom: 20}}>
-                            <Text style={styles.locText}>
-                                Location
-                            </Text>
-
-                            <Text style={styles.normalText}>
-                                Gedung Serbaguna, Jalan Basuki Rahmat
-                            </Text>
+                        <View style={{marginBottom: 20}}>
+                        <View style={{ justifyContent: 'center', }}>
+                                <Text style={styles.helpText}>Location </Text>
+                                <View style={{flexDirection: 'row', alignItems: 'center', }}>
+                                    <Image
+                                        source={require('../img/loc.png')}
+                                        style={{
+                                            width: 15,
+                                            height: 15,
+                                            marginRight: 5,
+                                        }}
+                                        resizeMode={'contain'}
+                                        />
+                                    <Text style={[styles.locText, ]}>Jalan Gatot Subroto No.1</Text>
+                                </View>
+                            </View>
                         </View>
                         <Text style={styles.subheaderTextLeft}>
                         Book donor appointment
@@ -259,7 +271,7 @@ export default class LoginScreen extends React.Component {
                             style={styles.midButton}
                         >
                             <Text style={styles.buttonText}>
-                                Register
+                                Book
                             </Text>
                         </Button>
                     </View>

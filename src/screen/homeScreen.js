@@ -189,7 +189,7 @@ export default class LoginScreen extends React.Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                            <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
+                    <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
                             <View style={[styles.card, ]}>
                         <TouchableOpacity 
                             onPress={()=>{this.props.navigation.navigate('PMIScreen')}}

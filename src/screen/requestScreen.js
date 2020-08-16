@@ -127,7 +127,7 @@ export default class LoginScreen extends React.Component {
 
                     <View style={{flex:2}}> 
                         <ImageBackground
-                            source={require("../img/event.png")}
+                            source={require("../img/search.png")}
                             style={{
                                 width: '100%', height: '100%', 
                             
