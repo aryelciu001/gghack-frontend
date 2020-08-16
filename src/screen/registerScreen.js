@@ -65,7 +65,7 @@ export default class RegisterScreen extends React.Component {
         }
     }
     componentDidMount(){
-        this.props.navigation.navigate("SignUpScreen")
+       
     }
     render(){
         const {error} = this.state
