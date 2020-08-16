@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hacks"
+        applicationId "com.haemo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

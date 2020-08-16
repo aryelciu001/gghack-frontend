@@ -10,20 +10,50 @@ import {
     KeyboardAvoidingView,
     ImageBackground
   } from 'react-native';
-import {Button, Footer, FooterTab, Container, Icon} from 'native-base';
 import {styles} from '../style'
 import Geocoder from 'react-native-geocoding'; 
 import TextBox from '../component/textField'
 import Geolocation from "@react-native-community/geolocation";
 import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Picker from '../component/picker'
+import {Button} from 'native-base'
+
+function RadioButton(props) {
+    return (
+        <View style={[{
+          height: 24,
+          width: 24,
+          borderRadius: 12,
+          borderWidth: 2,
+          borderColor: '#E03621',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }, props.style]}>
+          {
+            props.selected ?
+              <View style={{
+                height: 12,
+                width: 12,
+                borderRadius: 6,
+                backgroundColor: '#E03621',
+              }}/>
+              : null
+          }
+        </View>
+    );
+  }
 
 export default class LoginScreen extends React.Component {
     state = {
         longitude: '',
         latitude: '',
-        home: true,
-        profile: false,
+        blood: '',
+        rhesus: '',
+        notUrgent: true,
+        urgent: false,
+        veryUrgent: false,
+        result: true,
     };
 
     componentDidMount(){
@@ -43,127 +73,72 @@ export default class LoginScreen extends React.Component {
           );
         
     }
-
-    toggleHome = () => {
-        this.setState({home: true, profile: false})
+    
+    handleNotUrg = () =>{
+        this.setState({notUrgent: true, urgent: false, veryUrgent: false});
     }
-    toggleProfile = () => {
-        this.setState({home: false, profile: true})
+    handleUrg = () =>{
+        this.setState({notUrgent: false, urgent: true, veryUrgent: false});
+    }
+    handleVeryUrg = () =>{
+        this.setState({notUrgent: false, urgent: false, veryUrgent: true});
     }
 
-    eventStrip = () => {
-        return(
-            <View>
-
-            </View>
-        )
+    onFindBlood = () => {
+        this.setState({result: true})
     }
     render(){
         return(
-            <Container>
             <ScrollView style={{backgroundColor: 'white'}}>
-                { this.state.home ? (
-            <View>
-                    <View style={[styles.headerBox,]}>
-                    <View style={{ flexDirection: 'row', paddingLeft: 15}}>
-                        <View style={{flex: 4}}>
-                            <Text style={styles.subHead}>Hi, </Text>
-                            <Text style={styles.headText}>Karen Name</Text>
-                        </View>
-                        <View style={{flex:1, borderLeftWidth: 3, borderColor: "#E03621"}}>
-
+                <View style={[styles.headerBox,]}>
+                    <View style={{ flexDirection: 'row'}}>
+                        
+                        <View style={{flex: 5, flexDirection:'row'}}>
+                            <View style={{ justifyContent: 'center', paddingLeft: 10, }}>
+                                <TouchableOpacity
+                                    onPress={()=>{this.props.navigation.goBack()}}
+                                >
+                                    <Image
+                                    source={require('../img/back.png')}
+                                    style={{
+                                        width: 20,
+                                        height: 20,
+                                    }}
+                                    resizeMode={'contain'}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{ justifyContent: 'center', paddingLeft: 10, }}>
+                                <Text style={styles.helpText}>Location </Text>
+                                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'center'}}>
+                                    <Image
+                                        source={require('../img/loc.png')}
+                                        style={{
+                                            width: 15,
+                                            height: 15,
+                                            marginRight: 5
+                                        }}
+                                        resizeMode={'contain'}
+                                        />
+                                    <Text style={styles.locText}>DKI Jakarta, Indonesia</Text>
+                                </View>
+                            </View>
                         </View>
                     </View>
                     <View>
 
                     </View>
                 </View>
-                <View style={{flexDirection:'row', padding: 30}}>
-                        <View style={{flex: 2}}>
-                            <Text style={styles.headerTextLeft}>
-                                Blood 
-                            </Text>
-                            <Text style={styles.headerTextLeft}>
-                                Availability
-                            </Text>
-                            <Text>
-                                Indonesia Red
-                            </Text>
-                            <Text>
-                                Cross Society (PMI)
-                            </Text>
-                        </View>
-                        <View style={{flex: 3, backgroundColor: 'green'}}>
-
-                        </View>
-                    </View>
-                <View style={styles.subContainer}>
-                    <View style={{justifyContent: 'center', alignItems:'center'}}>
-                    <View style={{flexDirection:'row'}}>
-                      
-                        <Button 
-                            style={styles.carousel} 
-                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
-                        >
-                          <View style={{width: '100%', height: '100%'}}>
-                        
-                            <Text style={styles.boxText}>
-                                Find blood
-                            </Text>
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Image 
-                                    source={require("../img/find.png")}
-                                    style={{
-                                        width: '80%',
-                                        height: '80%',
-                                        alignSelf:'flex-end'
-                                    }}
-                                    resizeMode={'contain'}
-                                />
-                            </View>
-                            </View>
-                        </Button>
-                        
-                        <Button 
-                            style={styles.carousel} 
-                            onPress={()=>{this.props.navigation.navigate('DonorScreen')}}
-                        >
-                          <View style={{width: '100%', height: '100%'}}>
-                            <Text style={styles.boxText}>
-                                Donate blood
-                            </Text>
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Image 
-                                    source={require("../img/donate.png")}
-                                    style={{
-                                        width: '80%',
-                                        height: '80%',
-                                        alignSelf:'flex-end'
-                                    }}
-                                    resizeMode={'contain'}
-                                />
-                            </View>
-                            </View>
-                        </Button>
-                    </View>
-                    </View>
-                </View>
-                <View style={[styles.subContainer,{marginTop: 10}]}>
+                <View style={[styles.subContainer,{marginTop: 30}]}>
 
                     <View style={{flexDirection:'row'}}>
                         <View style={{flex: 3, alignItems: 'flex-start', justifyContent:'center',}}>
                         <Text style={[styles.subheaderTextLeft,]}>
-                            Nearest Blood Bank
+                            Blood bank near you
                         </Text>
                         </View>
-                        <TouchableOpacity style={{flex: 1, alignItems: 'flex-end', justifyContent:'center', }}>
-                            
-                            <Text style={[styles.helpText,]}>
-                                See all
-                            </Text>
-                        </TouchableOpacity>
                     </View>
-                            <View style={{justifyContent: 'center', alignItems:'center'}}>
+                <View style={{justifyContent: 'center', alignItems:'center'}}>
                     <View style={{flexDirection:'row'}}>
                       
                         <Button 
@@ -208,9 +183,54 @@ export default class LoginScreen extends React.Component {
                             </View>
                         </Button>
                     </View>
+                    <View style={{flexDirection:'row'}}>
+                      
+                        <Button 
+                            style={styles.card} 
+                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
+                        >
+                          <View style={{width: '100%', height: '100%',}}>
+                          <ImageBackground
+                                source={require("../img/pmi1.png")}
+                                style={{width: '100%', height: '100%'}}
+                                resizeMode={'cover'}
+                              >
+
+                            <View style={{justifyContent: 'flex-end'}}>
+                                <Text style={styles.boxText}>
+                                    Find blood
+                                </Text>
+                               
+                            </View>
+                              </ImageBackground>
+                            </View>
+                        </Button>
+                        
+                        <Button 
+                            style={styles.card} 
+                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
+                        >
+                          <View style={{width: '100%', height: '100%'}}>
+                          <ImageBackground
+                                source={require("../img/pmi2.png")}
+                                style={{width: '100%', height: '100%'}}
+                                resizeMode={'cover'}
+                              >
+
+                            <View style={{justifyContent: 'flex-end'}}>
+                                <Text style={styles.boxText}>
+                                    Find blood
+                                </Text>
+                               
+                            </View>
+                              </ImageBackground>
+                            </View>
+                        </Button>
                     </View>
                 </View>
-
+                
+                </View>
+                
                 <View style={[styles.subContainer,{marginTop: 10}]}>
 
                     <View style={{flexDirection:'row'}}>
@@ -222,15 +242,9 @@ export default class LoginScreen extends React.Component {
                             events near you
                         </Text>
                         </View>
-                        <TouchableOpacity style={{flex: 1, alignItems: 'flex-end', justifyContent:'center', }}>
-                            
-                            <Text style={[styles.helpText,]}>
-                                See all
-                            </Text>
-                        </TouchableOpacity>
                     </View>
                   
-                    <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 15, }}>
                             <View style= {styles.reqList}>
                                 <Text style={styles.subHead}>
                                    <Text style={[styles.normalText, {fontWeight: 'bold'}]}>
@@ -239,7 +253,7 @@ export default class LoginScreen extends React.Component {
                                     New Request Title
                                 </Text>
                                 <Text style={styles.helpText}>
-                                    WE NEEED YOUUURR BLOODDD
+                                Lorem ipsum dolor sit amet, consetetur elitr, sed diam nonumy eirmod tempor invidunt ut
                                 </Text>
                                
                             </View>
@@ -248,62 +262,7 @@ export default class LoginScreen extends React.Component {
                         </View>
                  
                 </View>
-
-                </View>
-                ):(
-                    <View>
-                        <Text>
-                            Profile
-                        </Text>
-                    </View>
-                )}
             </ScrollView>
-             <Footer>
-                <FooterTab>
-                <Button 
-                    active={this.state.home}
-                    onPress={()=>{this.toggleHome()}}
-                    style={this.state.home ? styles.activeTab : styles.muteTab}
-                >
-                    {this.state.home ? (
-
-                        <Image
-                            source={require('../img/homeA.png')}
-                            style={{
-                                width: 30,
-                                height: 30,
-                            }}
-                            resizeMode={'contain'}
-                        />
-                    ) : (
-                        <Image
-                        source={require('../img/homeM.png')}
-                        style={{
-                            width: 30,
-                            height: 30,
-                        }}
-                        resizeMode={'contain'}
-                    />
-                    )}
-
-                </Button>
-                <Button 
-                    active={this.state.profile}
-                    onPress={()=>{this.toggleProfile()}}
-                    style={this.state.profile ? styles.activeTab : styles.muteTab}
-                    >
-                       <Image
-                            source={this.state.profile? require('../img/profileA.png'): require('../img/profileM.png')}
-                            style={{
-                                width: 30,
-                                height: 30,
-                            }}
-                            resizeMode={'contain'}
-                        />
-                </Button>
-                </FooterTab>
-           </Footer>
-        </Container>
         )
     }
 }

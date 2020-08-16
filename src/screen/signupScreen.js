@@ -9,7 +9,7 @@ import {
     Image,
     KeyboardAvoidingView
   } from 'react-native';
-import {Button, } from 'native-base'
+import {Button, CheckBox} from 'native-base'
 import {styles} from '../style'
 import UpText from '../component/upText'
 import Picker from '../component/picker'
@@ -26,6 +26,7 @@ export default class LoginScreen extends React.Component {
         rhesus: '+',
         date: '',
         weight: '',
+        check: false,
     }
 
     signUp = () => {
@@ -128,12 +129,32 @@ export default class LoginScreen extends React.Component {
                                 </View>
                        
                         </View>
-                        
+                        <View style={{flexDirection:'row',marginTop:10, alignItems:'center', marginBottom: 10}}>
+                            <View >
+                            <CheckBox
+                                checked={this.state.check}
+                                style={{
+                                    height: 30,
+                                    width: 30,
+                                    marginRight: 5
+                                }}
+                                color="#F25846"
+                                onPress={()=>{this.setState({check: !this.state.check})}}
+                            />
+                            </View>
+                            <View style={{marginLeft: 10}}>
+                                <Text style={styles.normalText}>
+                                    Only notify me about blood requests that match my blood type
+                                </Text>
+                            </View>
+                        </View>
                         <Button 
                             onPress={()=>{this.props.navigation.navigate("EnableLocationScreen")}}
                             style={styles.midButton}
                         >
+
                             <Text style={styles.buttonText}>
+                             
                                 NEXT
                             </Text>
                         </Button>

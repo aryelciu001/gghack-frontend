@@ -42,7 +42,11 @@ export default class LoginScreen extends React.Component {
             if (newUser.error) delete newUser.error
             this.setState({...this.state, error: {}}, ()=>{
                 fetch(url, { ...httpOptions.post, body: JSON.stringify(newUser) })
-                .then(res => res.json())
+                .then(res => 
+                    {res.json();
+                        console.log("json finish")
+                    }
+                )
                 .then(data => {
                     console.log(data)
                     //if no error
@@ -53,6 +57,8 @@ export default class LoginScreen extends React.Component {
                     }
                 })
                 .catch(err => {
+                    console.log("error catched")
+            
                     console.log(err)
                 })
             })
@@ -72,12 +78,10 @@ export default class LoginScreen extends React.Component {
                                 source={require("../img/logo.png")}
                                 style={{
                                     width: 100,
-                                    height: 100,
+                                    height: 150,
                                 }}
+                                resizeMode='contain'
                             />
-                            <Text style={styles.titleText}>
-                                Blaaaaad
-                            </Text>
                         </View>
                         <TextBox 
                             placeholder="Email"

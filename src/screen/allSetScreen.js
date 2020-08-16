@@ -38,7 +38,7 @@ export default class LoginScreen extends React.Component {
                       source={require('../img/Checklist.png')}
                       style={{width: 150, height: 150}}
                   ></Image>
-                  <Text style={{...styles.titleText, textAlign: 'left', marginTop: 20, marginBottom: 20}}>You're all set!</Text>
+                  <Text style={{...styles.subheadText, textAlign: 'left', marginTop: 20, marginBottom: 20}}>You're all set!</Text>
                   <Button 
                         onPress={()=>this.props.navigation.navigate("HomeScreen")}
                         style={{...styles.midButton, width: 300, margin: 0, width: '50%'}}

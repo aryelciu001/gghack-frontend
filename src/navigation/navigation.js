@@ -11,7 +11,11 @@ import HomeScreen from '../screen/homeScreen'
 import DonorScreen from '../screen/donorScreen'
 import FindScreen from '../screen/findScreen'
 import AllSet from '../screen/allSetScreen'
-
+import EventScreen from '../screen/eventScreen'
+import PMIScreen from '../screen/pmiScreen'
+import RegisteredScreen from '../screen/registeredScreen'
+import BookSuccessScreen from '../screen/bookSuccess'
+import BookScreen from '../screen/bookScreen'
 const AuthStackNavigator = createStackNavigator(
     {
         LoginScreen: { screen: LoginScreen },
@@ -31,6 +35,11 @@ const MainStackNavigator = createStackNavigator(
         HomeScreen: {screen: HomeScreen},
         DonorScreen: {screen: DonorScreen},
         FindScreen: {screen: FindScreen},
+        EventScreen: {screen: EventScreen},
+        PMIScreen: {screen: PMIScreen},
+        RegisteredScreen: {screen: RegisteredScreen},
+        BookSuccessScreen: {screen: BookSuccessScreen},
+        BookScreen: {screen: BookScreen},
       },
       {
         initialRouteName: "HomeScreen",

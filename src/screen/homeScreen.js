@@ -17,7 +17,7 @@ import TextBox from '../component/textField'
 import Geolocation from "@react-native-community/geolocation";
 import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import Profile from './profileScreen'
 export default class LoginScreen extends React.Component {
     state = {
         longitude: '',
@@ -61,25 +61,37 @@ export default class LoginScreen extends React.Component {
     render(){
         return(
             <Container>
-            <ScrollView style={{backgroundColor: 'white'}}>
                 { this.state.home ? (
+            <ScrollView style={{backgroundColor: 'white'}}>
             <View>
                     <View style={[styles.headerBox,]}>
                     <View style={{ flexDirection: 'row', paddingLeft: 15}}>
                         <View style={{flex: 4}}>
                             <Text style={styles.subHead}>Hi, </Text>
-                            <Text style={styles.headText}>Karen Name</Text>
+                            <Text style={styles.headText}>Karen M.</Text>
                         </View>
-                        <View style={{flex:1, borderLeftWidth: 3, borderColor: "#E03621"}}>
-
+                        <View style={{flex:1, borderLeftWidth: 2, borderColor: "#E03621", justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity
+                                    onPress={()=>{this.props.navigation.goBack()}}
+                                >
+                                    <Image
+                                    source={require('../img/notif.png')}
+                                    style={{
+                                        width: 30,
+                                        height: 30,
+                                        alignSelf: 'center'
+                                    }}
+                                    resizeMode={'contain'}
+                                    />
+                                </TouchableOpacity>
                         </View>
                     </View>
                     <View>
 
                     </View>
                 </View>
-                <View style={{flexDirection:'row', padding: 30}}>
-                        <View style={{flex: 2}}>
+                <View style={{flexDirection:'row', padding: 20, alignSelf: 'center'}}>
+                        <View style={{flex: 2, justifyContent: 'center'}}>
                             <Text style={styles.headerTextLeft}>
                                 Blood 
                             </Text>
@@ -93,13 +105,25 @@ export default class LoginScreen extends React.Component {
                                 Cross Society (PMI)
                             </Text>
                         </View>
-                        <View style={{flex: 3, backgroundColor: 'green'}}>
+                        <View style={{flex: 3,justifyContent: 'center', alignItems: 'center'}}>
+                            <View style={{ elevation: 1}}>
+                                    <ImageBackground
+                                        source={require('../img/graph.png')}
+                                        style={{
+                                            width: 200,
+                                            height: 200,
+                                            alignSelf:'flex-end'
+                                        }}
+                                        resizeMode= 'contain'
+                                    >
 
+                                    </ImageBackground>
+                                </View>
                         </View>
                     </View>
                 <View style={styles.subContainer}>
-                    <View style={{justifyContent: 'center', alignItems:'center'}}>
-                    <View style={{flexDirection:'row'}}>
+                   
+                    <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
                       
                         <Button 
                             style={styles.carousel} 
@@ -145,7 +169,7 @@ export default class LoginScreen extends React.Component {
                             </View>
                             </View>
                         </Button>
-                    </View>
+            
                     </View>
                 </View>
                 <View style={[styles.subContainer,{marginTop: 10}]}>
@@ -156,58 +180,73 @@ export default class LoginScreen extends React.Component {
                             Nearest Blood Bank
                         </Text>
                         </View>
-                        <TouchableOpacity style={{flex: 1, alignItems: 'flex-end', justifyContent:'center', }}>
+                        <TouchableOpacity 
+                                onPress={()=>{this.props.navigation.navigate('DonorScreen')}}
+                        style={{flex: 1, alignItems: 'flex-end', justifyContent:'center', }}>
                             
                             <Text style={[styles.helpText,]}>
                                 See all
                             </Text>
                         </TouchableOpacity>
                     </View>
-                            <View style={{justifyContent: 'center', alignItems:'center'}}>
-                    <View style={{flexDirection:'row'}}>
-                      
-                        <Button 
-                            style={styles.card} 
-                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
+                            <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
+                            <View style={[styles.card, ]}>
+                        <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '110%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
                         >
-                          <View style={{width: '100%', height: '100%',}}>
+                            <View style={{flex: 4}}>
+
                           <ImageBackground
-                                source={require("../img/pmi1.png")}
-                                style={{width: '100%', height: '100%'}}
+                                source={require("../img/p1.png")}
+                                style={{width: '100%', height: '100%',}}
                                 resizeMode={'cover'}
                               >
-
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Text style={styles.boxText}>
-                                    Find blood
+                           
+                        </ImageBackground>
+                            </View>
+                             <View style={{flex: 1}}>
+                             <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                <Text style={styles.boxText2}>
+                                PMI Jakarta Selatan
                                 </Text>
-                               
+                               <Text style={styles.helpText}>
+                                    3 km away
+                               </Text>
                             </View>
-                              </ImageBackground>
+                             </View>
+                        </TouchableOpacity>
                             </View>
-                        </Button>
                         
-                        <Button 
-                            style={styles.card} 
-                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
+                          <View style={[styles.card, ]}>
+                        <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '110%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
                         >
-                          <View style={{width: '100%', height: '100%'}}>
+                            <View style={{flex: 4}}>
+
                           <ImageBackground
-                                source={require("../img/pmi2.png")}
-                                style={{width: '100%', height: '100%'}}
+                                source={require("../img/p2.png")}
+                                style={{width: '100%', height: '100%',}}
                                 resizeMode={'cover'}
                               >
-
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Text style={styles.boxText}>
-                                    Find blood
+                           
+                        </ImageBackground>
+                            </View>
+                             <View style={{flex: 1}}>
+                             <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                <Text style={styles.boxText2}>
+                                PMI Jakarta Timur
                                 </Text>
-                               
+                               <Text style={styles.helpText}>
+                                    7 km away
+                               </Text>
                             </View>
-                              </ImageBackground>
+                             </View>
+                        </TouchableOpacity>
                             </View>
-                        </Button>
-                    </View>
+
+                        
                     </View>
                 </View>
 
@@ -222,7 +261,9 @@ export default class LoginScreen extends React.Component {
                             events near you
                         </Text>
                         </View>
-                        <TouchableOpacity style={{flex: 1, alignItems: 'flex-end', justifyContent:'center', }}>
+                        <TouchableOpacity 
+                                    onPress={()=>{this.props.navigation.navigate('DonorScreen')}}
+                        style={{flex: 1, alignItems: 'flex-end', justifyContent:'center', }}>
                             
                             <Text style={[styles.helpText,]}>
                                 See all
@@ -230,8 +271,11 @@ export default class LoginScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
                   
-                    <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center',marginTop: 20 }}>
                             <View style= {styles.reqList}>
+                        <TouchableOpacity
+                               onPress={()=>{this.props.navigation.navigate('EventScreen')}}
+                        >
                                 <Text style={styles.subHead}>
                                    <Text style={[styles.normalText, {fontWeight: 'bold'}]}>
                                     [A+] {" "}
@@ -242,22 +286,20 @@ export default class LoginScreen extends React.Component {
                                     WE NEEED YOUUURR BLOODDD
                                 </Text>
                                
+                        </TouchableOpacity> 
                             </View>
-                          
 
                         </View>
                  
                 </View>
 
                 </View>
-                ):(
-                    <View>
-                        <Text>
-                            Profile
-                        </Text>
-                    </View>
-                )}
             </ScrollView>
+                ):(
+                   
+                        <Profile/>
+                   
+                )}
              <Footer>
                 <FooterTab>
                 <Button 
