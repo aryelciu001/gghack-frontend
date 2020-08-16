@@ -43,9 +43,7 @@ export default class RegisterScreen extends React.Component {
             this.setState({...this.state, error: {}}, ()=>{
                 fetch(url, { ...httpOptions.post, body: JSON.stringify(newUser) })
                 .then(res => 
-                    {res.json();
-                        console.log("json finish")
-                    }
+                    res.json()
                 )
                 .then(data => {
                     console.log(data)
@@ -65,7 +63,7 @@ export default class RegisterScreen extends React.Component {
         }
     }
     componentDidMount(){
-        this.props.navigation.navigate("SignUpScreen")
+       
     }
     render(){
         const {error} = this.state
