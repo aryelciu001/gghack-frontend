@@ -200,7 +200,7 @@ export default class LoginScreen extends React.Component {
                             </Text>
                         </View>
                         <TouchableOpacity 
-                                onPress={()=>{this.props.navigation.navigate('DonorScreen')}}
+                                onPress={()=>{this.props.navigation.navigate('NearestScreen')}}
                         style={{flex: 1, alignItems: 'flex-end', justifyContent:'center', }}>
                             
                             <Text style={[styles.helpText,]}>

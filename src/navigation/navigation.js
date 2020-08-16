@@ -19,6 +19,7 @@ import BookScreen from '../screen/bookScreen'
 import RequestScreen from '../screen/requestScreen'
 import ReqFormScreen from '../screen/reqFormScreen'
 import PostSuccess from '../screen/postScreen'
+import NearestScreen from '../screen/nearestScreen'
 
 const AuthStackNavigator = createStackNavigator(
     {
@@ -46,7 +47,8 @@ const MainStackNavigator = createStackNavigator(
         BookScreen: {screen: BookScreen},
         RequestScreen: {screen: RequestScreen},
         ReqFormScreen: {screen: ReqFormScreen},
-        PostSuccess: {screen: PostSuccess}
+        PostSuccess: {screen: PostSuccess},
+        NearestScreen: {screen: NearestScreen}
       },
       {
         initialRouteName: "HomeScreen",
