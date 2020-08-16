@@ -24,8 +24,8 @@ import { getDistanceFromLatLonInKm } from '../helpers/distance'
 
 export default class LoginScreen extends React.Component {
     state = {
-        longitude: '',
-        latitude: '',
+        longitude: 98.680051,
+        latitude: 3.584236,
         home: true,
         profile: false,
         nearbyRC: []
@@ -190,6 +190,7 @@ export default class LoginScreen extends React.Component {
             
                     </View>
                 </View>
+
                 <View style={[styles.subContainer,{marginTop: 10}]}>
 
                     <View style={{flexDirection:'row'}}>
@@ -207,7 +208,7 @@ export default class LoginScreen extends React.Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    
+                    {/*}
                     <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
                             <View style={[styles.card, ]}>
                         <TouchableOpacity 
@@ -265,8 +266,9 @@ export default class LoginScreen extends React.Component {
                         </TouchableOpacity>
                             </View>
                     </View>
+                    */}
                     {/* Nearby RedCross */}
-                    <View style={{flexDirection:'column',justifyContent: 'center', alignItems:'center'}}>
+                    <View style={{justifyContent: 'center', alignItems:'center'}}>
                         {this.generateNearbyRedCross()}
                     </View>
                 </View> 
@@ -405,6 +407,66 @@ export default class LoginScreen extends React.Component {
         })
 
         console.log(nearby)
+        let rc= nearby[0];
+        let rc2= nearby[1]
+        return(
+            <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center', marginLeft: 10,}}>
+                            <View style={[styles.card, ]}>
+                            <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '150%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
+                        >
+                            <View style={{flex: 4}}>
+
+                                <ImageBackground
+                                        source={{uri: `${api}/redcross/img/${rc.city}`}}
+                                        style={{width: '100%', height: '100%',}}
+                                        resizeMode={'cover'}
+                                    />
+                            
+                            </View>
+                            <View style={{flex: 2}}>
+                                <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                    <Text style={styles.boxText2}>
+                                    {rc.name}
+                                    </Text>
+                                    <Text style={styles.helpText}>
+                                            {rc.dist+" km away"}
+                                    </Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                            </View>
+                        
+                          <View style={[styles.card, ]}>
+                          <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '150%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
+                        >
+                            <View style={{flex: 4}}>
+
+                                <ImageBackground
+                                        source={{uri: `${api}/redcross/img/${rc2.city}`}}
+                                        style={{width: '100%', height: '100%',}}
+                                        resizeMode={'cover'}
+                                    />
+                            
+                            </View>
+                            <View style={{flex: 2}}>
+                                <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                    <Text style={styles.boxText2}>
+                                    {rc2.name}
+                                    </Text>
+                                    <Text style={styles.helpText}>
+                                            {rc2.dist+" km away"}
+                                    </Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                            </View>
+                    </View>
+        )
+        /*
         return nearby.map((rc, i) => {
             console.log(`${api}/redcross/img/${rc.city}`)
             return <View style={[styles.card, ]} key={i}>
@@ -421,7 +483,7 @@ export default class LoginScreen extends React.Component {
                                     />
                             
                             </View>
-                            <View style={{flex: 1}}>
+                            <View style={{flex: 2}}>
                                 <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
                                     <Text style={styles.boxText2}>
                                     {rc.name}
@@ -434,5 +496,6 @@ export default class LoginScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
         })
+        */
     }
 }
