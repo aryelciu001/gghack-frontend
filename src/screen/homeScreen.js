@@ -28,10 +28,11 @@ export default class LoginScreen extends React.Component {
         latitude: '',
         home: true,
         profile: false,
-        nearbyRC: []
+        nearbyRC: [],
+        bloodReq: []
     };
 
-    componentDidMount(){
+    fetchRedCross = () => {
         let url = api + '/redcross/'
         fetch(url, { ...httpOptions.get })
             .then(res =>  (
@@ -44,7 +45,26 @@ export default class LoginScreen extends React.Component {
                 console.log("err catch")
                 console.log(err)
             })
+    }
 
+    fetchBloodRequest = () => {
+        let url = api + '/bloodrequest/'
+        fetch(url, { ...httpOptions.get })
+            .then(res =>  (
+                res.json()
+            ))
+            .then(data => {
+                this.setState({...this.state, bloodReq: data})
+            })
+            .catch(err => {
+                console.log("err catch")
+                console.log(err)
+            })
+    }
+
+    componentDidMount(){
+        this.fetchBloodRequest()
+        this.fetchRedCross()
         Permission.checkGPS()
         Geolocation.getCurrentPosition((info) => {
             this.setState({
@@ -236,40 +256,8 @@ export default class LoginScreen extends React.Component {
                     </View>
                   
                     <View style={{ justifyContent: 'center', alignItems: 'center',marginTop: 20 }}>
-                            <View style= {styles.reqList}>
-                        <TouchableOpacity
-                               onPress={()=>{this.props.navigation.navigate('RequestScreen')}}
-                        >
-                                <Text style={styles.subHead}>
-                                   <Text style={[styles.normalText, {fontWeight: 'bold'}]}>
-                                    [A+] {" "}
-                                  </Text>
-                                    New Request Title
-                                </Text>
-                                <Text style={styles.helpText}>
-                                    WE NEEED YOUUURR BLOODDD
-                                </Text>
-                               
-                        </TouchableOpacity> 
-                            </View>
-
-
-                            <View style= {styles.reqList}>
-                        <TouchableOpacity
-                               onPress={()=>{this.props.navigation.navigate('EventScreen')}}
-                        >
-                                <Text style={styles.subHead}>
-                                   
-                                    Events! Donor your blood
-                                </Text>
-                                <Text style={styles.helpText}>
-                                    WE NEEED YOUUURR BLOODDD
-                                </Text>
-                               
-                        </TouchableOpacity> 
-                            </View>
-
-                        </View>
+                            {this.generateBloodRequest()}
+                    </View>
                  
                 </View>
 
@@ -337,8 +325,6 @@ export default class LoginScreen extends React.Component {
 
         if (nearby.length <= 0) return
 
-        console.log(`lat is ${latitude} long is ${longitude}`)
-
         nearby.map(_ => {
             _.dist = getDistanceFromLatLonInKm(latitude,longitude,_.lat,_.long).toFixed(2)
         })
@@ -347,9 +333,7 @@ export default class LoginScreen extends React.Component {
             return a.dist - b.dist
         })
 
-        console.log(nearby)
         return nearby.map((rc, i) => {
-            console.log(`${api}/redcross/img/${rc.city}`)
             return <View style={[styles.card, ]} key={i}>
                         <TouchableOpacity 
                             onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
@@ -375,6 +359,46 @@ export default class LoginScreen extends React.Component {
                                 </View>
                             </View>
                         </TouchableOpacity>
+                    </View>
+        })
+    }
+
+    generateBloodRequest = () => {
+        let {bloodReq, latitude, longitude} = this.state
+
+        if (!latitude && !longitude) return
+
+        if (bloodReq.length <= 0) return
+
+        bloodReq.map(_ => {
+            _.dist = getDistanceFromLatLonInKm(latitude,longitude,_.lat,_.long).toFixed(2)
+        })
+
+        bloodReq = bloodReq.sort((a, b) => {
+            return a.dist - b.dist
+        })
+
+        console.log(bloodReq)
+
+        return bloodReq.map((req, i) => {
+            return <View style= {styles.reqList} key={i}>
+                        <TouchableOpacity
+                            onPress={()=>{this.props.navigation.navigate('EventScreen')}}
+                        >
+                                <Text style={styles.subHead}>
+                                <Text style={[styles.normalText, {fontWeight: 'bold'}]}>
+                                    [{req.bloodType.toUpperCase()+req.rhesus}]{" "}
+                                </Text>
+                                    {req.title}
+                                </Text>
+                                <Text style={styles.helpText}>
+                                    {req.desc}
+                                </Text>
+                                <Text style={styles.helpText}>
+                                    {req.dist+" km away"}
+                                </Text>
+                            
+                        </TouchableOpacity> 
                     </View>
         })
     }
