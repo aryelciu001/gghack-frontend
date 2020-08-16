@@ -15,6 +15,10 @@ import { TouchableHighlight,  } from 'react-native-gesture-handler';
 export default class SplashScreen extends React.Component {
 
     componentDidMount() {
+          
+    if(!__DEV__){
+        console.log = () => {};
+      } 
         setTimeout(()=>{
             console.log("move")
             this.props.navigation.navigate("AuthStackNavigator")

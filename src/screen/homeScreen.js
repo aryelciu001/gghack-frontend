@@ -24,8 +24,8 @@ import { getDistanceFromLatLonInKm } from '../helpers/distance'
 
 export default class LoginScreen extends React.Component {
     state = {
-        longitude: 98.680051,
-        latitude: 3.584236,
+        longitude:  106.844667,
+        latitude:  -6.185077,
         home: true,
         profile: false,
         nearbyRC: [],
