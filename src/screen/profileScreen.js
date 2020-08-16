@@ -34,7 +34,7 @@ export default class LoginScreen extends React.Component {
 
     onRegister = () => {
         this.setState({result: true})
-        this.props.navigation.navigate("LoginScreen")
+        this.props.signOut();
     }
     onDatePick = () => {
         console.log("pick")

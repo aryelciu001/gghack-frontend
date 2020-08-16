@@ -68,7 +68,9 @@ export default class LoginScreen extends React.Component {
     toggleProfile = () => {
         this.setState({home: false, profile: true})
     }
-
+    onsignOut = () =>{
+        this.props.navigation.navigate("AuthStackNavigator")
+    }
     eventStrip = () => {
         return(
             <View>
@@ -336,7 +338,9 @@ export default class LoginScreen extends React.Component {
             </ScrollView>
                 ):(
                    
-                        <Profile/>
+                        <Profile
+                            signOut = {()=>{this.onsignOut()}}
+                        />
                    
                 )}
              <Footer>
