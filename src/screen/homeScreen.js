@@ -18,23 +18,41 @@ import Geolocation from "@react-native-community/geolocation";
 import {Permission, PERMISSIONS_TYPE} from '../logic/permission';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Profile from './profileScreen'
+
+import { httpOptions, api, checkBody } from '../helpers/httpRequest'
+import { getDistanceFromLatLonInKm } from '../helpers/distance'
+
 export default class LoginScreen extends React.Component {
     state = {
         longitude: '',
         latitude: '',
         home: true,
         profile: false,
+        nearbyRC: []
     };
 
     componentDidMount(){
+        let url = api + '/redcross/'
+        fetch(url, { ...httpOptions.get })
+            .then(res =>  (
+                res.json()
+            ))
+            .then(data => {
+                this.setState({...this.state, nearbyRC: data})
+            })
+            .catch(err => {
+                console.log("err catch")
+                console.log(err)
+            })
+
         Permission.checkGPS()
         Geolocation.getCurrentPosition((info) => {
-              console.log("info ", info.coords.longitude, " ", info.coords.latitude)
-                this.setState({
-                    latitude: info.coords.latitude,
-                    longitude: info.coords.longitude
-                })
-            
+            this.setState({
+                latitude: info.coords.latitude,
+                longitude: info.coords.longitude
+            }, ()=>{
+
+            })
           },
           (err) =>{
             console.log(err);
@@ -176,9 +194,9 @@ export default class LoginScreen extends React.Component {
 
                     <View style={{flexDirection:'row'}}>
                         <View style={{flex: 3, alignItems: 'flex-start', justifyContent:'center',}}>
-                        <Text style={[styles.subheaderTextLeft,]}>
-                            Nearest Blood Bank
-                        </Text>
+                            <Text style={[styles.subheaderTextLeft,]}>
+                                Nearest Blood Bank
+                            </Text>
                         </View>
                         <TouchableOpacity 
                                 onPress={()=>{this.props.navigation.navigate('DonorScreen')}}
@@ -189,6 +207,7 @@ export default class LoginScreen extends React.Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
+                    
                     <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
                             <View style={[styles.card, ]}>
                         <TouchableOpacity 
@@ -245,10 +264,12 @@ export default class LoginScreen extends React.Component {
                              </View>
                         </TouchableOpacity>
                             </View>
-
-                        
                     </View>
-                </View>
+                    {/* Nearby RedCross */}
+                    <View style={{flexDirection:'column',justifyContent: 'center', alignItems:'center'}}>
+                        {this.generateNearbyRedCross()}
+                    </View>
+                </View> 
 
                 <View style={[styles.subContainer,{marginTop: 10}]}>
 
@@ -363,5 +384,55 @@ export default class LoginScreen extends React.Component {
            </Footer>
         </Container>
         )
+    }
+
+    generateNearbyRedCross = () => {
+        let nearby = this.state.nearbyRC
+        let {latitude, longitude} = this.state
+
+        if (!latitude && !longitude) return
+
+        if (nearby.length <= 0) return
+
+        console.log(`lat is ${latitude} long is ${longitude}`)
+
+        nearby.map(_ => {
+            _.dist = getDistanceFromLatLonInKm(latitude,longitude,_.lat,_.long).toFixed(2)
+        })
+
+        nearby = nearby.sort((a, b) => {
+            return a.dist - b.dist
+        })
+
+        console.log(nearby)
+        return nearby.map((rc, i) => {
+            console.log(`${api}/redcross/img/${rc.city}`)
+            return <View style={[styles.card, ]} key={i}>
+                        <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '150%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
+                        >
+                            <View style={{flex: 4}}>
+
+                                <ImageBackground
+                                        source={{uri: `${api}/redcross/img/${rc.city}`}}
+                                        style={{width: '100%', height: '100%',}}
+                                        resizeMode={'cover'}
+                                    />
+                            
+                            </View>
+                            <View style={{flex: 1}}>
+                                <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                    <Text style={styles.boxText2}>
+                                    {rc.name}
+                                    </Text>
+                                    <Text style={styles.helpText}>
+                                            {rc.dist+" km away"}
+                                    </Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+        })
     }
 }
