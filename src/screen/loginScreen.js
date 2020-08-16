@@ -17,12 +17,13 @@ export default class LoginScreen extends React.Component {
         error: {}
     }
 
-    join = () => {
+    login = () => {
 
         Keyboard.dismiss(0)
 
         let newUser = { ...this.state }
-        let url = api + ':3001/users/signin'
+        let url = api + '/users/signin'
+        console.log(url)
         let bodyCheck = checkBody(newUser, ['email', 'password'])
 
         if ( !newUser.email.includes('@')) {
@@ -41,6 +42,17 @@ export default class LoginScreen extends React.Component {
         } else {
             if (newUser.error) delete newUser.error
             this.setState({...this.state, error: {}}, ()=>{
+
+                // let http = new XMLHttpRequest()
+                // http.open('POST', url, true)
+                // http.setRequestHeader('Content-type', 'application/json');
+                // http.onreadystatechange = function() {//Call a function when the state changes.
+                //     if(http.readyState == 4 && http.status == 200) {
+                //         console.log(http.responseText);
+                //     }
+                // }
+                // http.send(newUser);
+
                 fetch(url, { ...httpOptions.post, body: JSON.stringify(newUser) })
                 .then(res => res.json())
                 .then(data => {
@@ -93,7 +105,7 @@ export default class LoginScreen extends React.Component {
                         />
                         {error.props === 'password' ? <Text style={styles.feedback}>{error.msg}</Text> : null}
                         <Button 
-                            onPress={()=>this.join()} 
+                            onPress={()=>this.login()} 
                             style={styles.midButton}
                         >
                             <Text style={styles.buttonText}>
