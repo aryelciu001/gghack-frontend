@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -67,17 +67,8 @@ export default class LoginScreen extends React.Component {
     render(){
         return(
             <ScrollView style={{backgroundColor: 'white'}}>
-                <View style={[styles.tallHeader,]}>
-                <ImageBackground
-                        source={require("../img/event.png")}
-                        style={{
-                            width: '100%', height: '100%', 
-                        
-                    }}
-                    height={'60%'}
-
-                                resizeMode={'contain'}
-                              >
+                 <View style={[styles.tallHeader,{flexDirection: 'row'}]}>
+                    <View style={{flex: 4}}>
                     <View style={{flex:1}}/>
                     <View style={{ justifyContent: 'flex-start',flex:1, paddingLeft: 10, }}>
                                 <TouchableOpacity
@@ -117,8 +108,24 @@ export default class LoginScreen extends React.Component {
                     <View>
 
                     </View>
-                    </ImageBackground>
+                    </View>
+
+                    <View style={{flex:2}}> 
+                        <ImageBackground
+                            source={require("../img/event.png")}
+                            style={{
+                                width: '100%', height: '100%', 
+                            
+                        }}
+                        height={'60%'}
+
+                                    resizeMode={'contain'}
+                                />
+                    </View>
+              
+                  
                 </View>
+
                 <View style={styles.subContainer2}>
                     <View style={{marginTop: 15}}>
     

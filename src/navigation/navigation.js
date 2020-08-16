@@ -16,6 +16,10 @@ import PMIScreen from '../screen/pmiScreen'
 import RegisteredScreen from '../screen/registeredScreen'
 import BookSuccessScreen from '../screen/bookSuccess'
 import BookScreen from '../screen/bookScreen'
+import RequestScreen from '../screen/requestScreen'
+import ReqFormScreen from '../screen/reqFormScreen'
+import PostSuccess from '../screen/postScreen'
+
 const AuthStackNavigator = createStackNavigator(
     {
         LoginScreen: { screen: LoginScreen },
@@ -25,7 +29,7 @@ const AuthStackNavigator = createStackNavigator(
         AllSet: {screen: AllSet}
       },
       {
-        initialRouteName: "RegisterScreen",
+        initialRouteName: "LoginScreen",
         headerMode: "none",
       }
 );
@@ -40,6 +44,9 @@ const MainStackNavigator = createStackNavigator(
         RegisteredScreen: {screen: RegisteredScreen},
         BookSuccessScreen: {screen: BookSuccessScreen},
         BookScreen: {screen: BookScreen},
+        RequestScreen: {screen: RequestScreen},
+        ReqFormScreen: {screen: ReqFormScreen},
+        PostSuccess: {screen: PostSuccess}
       },
       {
         initialRouteName: "HomeScreen",

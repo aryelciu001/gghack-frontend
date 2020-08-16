@@ -22,7 +22,7 @@ export default class textBox extends React.Component {
                 <Text style={[{marginLeft: 10,}, styles.inputTitle]}>
                     {this.props.placeholder}
                 </Text>
-            <View style={[style2.upTextBox,{borderColor: this.state.generalColor, width: this.props.widthBox}]}>
+            <View style={[style2.upTextBox,{borderColor: this.state.generalColor, width: this.props.widthBox, height: this.props.heightBox}]}>
                 <View style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center'}}>
                 
                     <Input

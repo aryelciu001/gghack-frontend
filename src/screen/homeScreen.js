@@ -238,13 +238,29 @@ export default class LoginScreen extends React.Component {
                     <View style={{ justifyContent: 'center', alignItems: 'center',marginTop: 20 }}>
                             <View style= {styles.reqList}>
                         <TouchableOpacity
-                               onPress={()=>{this.props.navigation.navigate('EventScreen')}}
+                               onPress={()=>{this.props.navigation.navigate('RequestScreen')}}
                         >
                                 <Text style={styles.subHead}>
                                    <Text style={[styles.normalText, {fontWeight: 'bold'}]}>
                                     [A+] {" "}
                                   </Text>
                                     New Request Title
+                                </Text>
+                                <Text style={styles.helpText}>
+                                    WE NEEED YOUUURR BLOODDD
+                                </Text>
+                               
+                        </TouchableOpacity> 
+                            </View>
+
+
+                            <View style= {styles.reqList}>
+                        <TouchableOpacity
+                               onPress={()=>{this.props.navigation.navigate('EventScreen')}}
+                        >
+                                <Text style={styles.subHead}>
+                                   
+                                    Events! Donor your blood
                                 </Text>
                                 <Text style={styles.helpText}>
                                     WE NEEED YOUUURR BLOODDD
