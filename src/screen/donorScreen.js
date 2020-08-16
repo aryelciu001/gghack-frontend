@@ -131,12 +131,20 @@ export default class LoginScreen extends React.Component {
                 </View>
                 <View style={[styles.subContainer,{marginTop: 30}]}>
 
-                    <View style={{flexDirection:'row'}}>
+                <View style={{flexDirection:'row'}}>
                         <View style={{flex: 3, alignItems: 'flex-start', justifyContent:'center',}}>
-                        <Text style={[styles.subheaderTextLeft,]}>
-                            Blood bank near you
-                        </Text>
+                            <Text style={[styles.subheaderTextLeft,]}>
+                                 Blood Bank near you
+                            </Text>
                         </View>
+                        <TouchableOpacity 
+                                onPress={()=>{this.props.navigation.navigate('NearestScreen')}}
+                        style={{flex: 1, alignItems: 'flex-end', justifyContent:'center', }}>
+                            
+                            <Text style={[styles.helpText,]}>
+                                See all
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
                             <View style={[styles.card, ]}>
@@ -197,65 +205,7 @@ export default class LoginScreen extends React.Component {
 
                         
                     </View>
-                    <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
-                            <View style={[styles.card, ]}>
-                        <TouchableOpacity 
-                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
-                            style={{width: '110%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
-                        >
-                            <View style={{flex: 4}}>
-
-                          <ImageBackground
-                                source={require("../img/p1.png")}
-                                style={{width: '100%', height: '100%',}}
-                                resizeMode={'cover'}
-                              >
-                           
-                        </ImageBackground>
-                            </View>
-                             <View style={{flex: 1}}>
-                             <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
-                                <Text style={styles.boxText2}>
-                                PMI Jakarta Selatan
-                                </Text>
-                               <Text style={styles.helpText}>
-                                    3 km away
-                               </Text>
-                            </View>
-                             </View>
-                        </TouchableOpacity>
-                            </View>
-                        
-                          <View style={[styles.card, ]}>
-                        <TouchableOpacity 
-                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
-                            style={{width: '110%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
-                        >
-                            <View style={{flex: 4}}>
-
-                          <ImageBackground
-                                source={require("../img/p2.png")}
-                                style={{width: '100%', height: '100%',}}
-                                resizeMode={'cover'}
-                              >
-                           
-                        </ImageBackground>
-                            </View>
-                             <View style={{flex: 1}}>
-                             <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
-                                <Text style={styles.boxText2}>
-                                PMI Jakarta Timur
-                                </Text>
-                               <Text style={styles.helpText}>
-                                    7 km away
-                               </Text>
-                            </View>
-                             </View>
-                        </TouchableOpacity>
-                            </View>
-
-                        
-                    </View>
+                    
                 
                 </View>
                 
