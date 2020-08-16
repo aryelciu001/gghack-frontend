@@ -138,96 +138,124 @@ export default class LoginScreen extends React.Component {
                         </Text>
                         </View>
                     </View>
-                <View style={{justifyContent: 'center', alignItems:'center'}}>
-                    <View style={{flexDirection:'row'}}>
-                      
-                        <Button 
-                            style={styles.card} 
-                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
+                    <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
+                            <View style={[styles.card, ]}>
+                        <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '110%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
                         >
-                          <View style={{width: '100%', height: '100%',}}>
+                            <View style={{flex: 4}}>
+
                           <ImageBackground
-                                source={require("../img/pmi1.png")}
-                                style={{width: '100%', height: '100%'}}
+                                source={require("../img/p1.png")}
+                                style={{width: '100%', height: '100%',}}
                                 resizeMode={'cover'}
                               >
-
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Text style={styles.boxText}>
-                                    Find blood
+                           
+                        </ImageBackground>
+                            </View>
+                             <View style={{flex: 1}}>
+                             <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                <Text style={styles.boxText2}>
+                                PMI Jakarta Selatan
                                 </Text>
-                               
+                               <Text style={styles.helpText}>
+                                    3 km away
+                               </Text>
                             </View>
-                              </ImageBackground>
+                             </View>
+                        </TouchableOpacity>
                             </View>
-                        </Button>
                         
-                        <Button 
-                            style={styles.card} 
-                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
+                          <View style={[styles.card, ]}>
+                        <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '110%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
                         >
-                          <View style={{width: '100%', height: '100%'}}>
+                            <View style={{flex: 4}}>
+
                           <ImageBackground
-                                source={require("../img/pmi2.png")}
-                                style={{width: '100%', height: '100%'}}
+                                source={require("../img/p2.png")}
+                                style={{width: '100%', height: '100%',}}
                                 resizeMode={'cover'}
                               >
-
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Text style={styles.boxText}>
-                                    Find blood
+                           
+                        </ImageBackground>
+                            </View>
+                             <View style={{flex: 1}}>
+                             <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                <Text style={styles.boxText2}>
+                                PMI Jakarta Timur
                                 </Text>
-                               
+                               <Text style={styles.helpText}>
+                                    7 km away
+                               </Text>
                             </View>
-                              </ImageBackground>
+                             </View>
+                        </TouchableOpacity>
                             </View>
-                        </Button>
-                    </View>
-                    <View style={{flexDirection:'row'}}>
-                      
-                        <Button 
-                            style={styles.card} 
-                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
-                        >
-                          <View style={{width: '100%', height: '100%',}}>
-                          <ImageBackground
-                                source={require("../img/pmi1.png")}
-                                style={{width: '100%', height: '100%'}}
-                                resizeMode={'cover'}
-                              >
 
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Text style={styles.boxText}>
-                                    Find blood
-                                </Text>
-                               
-                            </View>
-                              </ImageBackground>
-                            </View>
-                        </Button>
                         
-                        <Button 
-                            style={styles.card} 
-                            onPress={()=>{this.props.navigation.navigate('FindScreen')}}
+                    </View>
+                    <View style={{flexDirection:'row',justifyContent: 'center', alignItems:'center'}}>
+                            <View style={[styles.card, ]}>
+                        <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '110%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
                         >
-                          <View style={{width: '100%', height: '100%'}}>
+                            <View style={{flex: 4}}>
+
                           <ImageBackground
-                                source={require("../img/pmi2.png")}
-                                style={{width: '100%', height: '100%'}}
+                                source={require("../img/p1.png")}
+                                style={{width: '100%', height: '100%',}}
                                 resizeMode={'cover'}
                               >
-
-                            <View style={{justifyContent: 'flex-end'}}>
-                                <Text style={styles.boxText}>
-                                    Find blood
+                           
+                        </ImageBackground>
+                            </View>
+                             <View style={{flex: 1}}>
+                             <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                <Text style={styles.boxText2}>
+                                PMI Jakarta Selatan
                                 </Text>
-                               
+                               <Text style={styles.helpText}>
+                                    3 km away
+                               </Text>
                             </View>
-                              </ImageBackground>
+                             </View>
+                        </TouchableOpacity>
                             </View>
-                        </Button>
+                        
+                          <View style={[styles.card, ]}>
+                        <TouchableOpacity 
+                            onPress={()=>{this.props.navigation.navigate('PMIScreen')}}
+                            style={{width: '110%', height: '100%', marginLeft: -5, backgroundColor: 'white'}}
+                        >
+                            <View style={{flex: 4}}>
+
+                          <ImageBackground
+                                source={require("../img/p2.png")}
+                                style={{width: '100%', height: '100%',}}
+                                resizeMode={'cover'}
+                              >
+                           
+                        </ImageBackground>
+                            </View>
+                             <View style={{flex: 1}}>
+                             <View style={{justifyContent: 'flex-end',marginLeft: 10, marginBottom: 5, backgroundColor: 'white', }}>
+                                <Text style={styles.boxText2}>
+                                PMI Jakarta Timur
+                                </Text>
+                               <Text style={styles.helpText}>
+                                    7 km away
+                               </Text>
+                            </View>
+                             </View>
+                        </TouchableOpacity>
+                            </View>
+
+                        
                     </View>
-                </View>
                 
                 </View>
                 
