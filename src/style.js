@@ -73,6 +73,19 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
     },
+    wmidButton: {
+        backgroundColor: 'white',
+        borderColor: '#F25846',
+        borderWidth: 1,
+        borderRadius: 10,
+        margin: 10,
+        padding: 5,
+        width: 138,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+    },
     buttonText: {
         color: 'white',
         fontSize: 18,
@@ -121,6 +134,21 @@ export const styles = StyleSheet.create({
         fontFamily: 'Gotham-Medium',
         fontWeight: 'bold',
     },  
+    tag: {
+        width: 85,
+        height: 24,
+        borderRadius: 10,
+        backgroundColor: '#FF6C6C',
+        margin: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    tagText: {
+        color: 'white',
+        fontSize: 12,
+        fontFamily: 'Gotham-Medium',
+        fontWeight:'normal'
+    },
     subheadText: {
         color: '#707070',
         fontSize: 24,
@@ -131,6 +159,7 @@ export const styles = StyleSheet.create({
         color: '#707070',
         fontSize: 14,
         fontFamily: 'Gotham-Medium',
+        fontWeight:'normal'
     },  
     inputTitle: {
         color: '#707070',
@@ -195,7 +224,7 @@ export const styles = StyleSheet.create({
     },
     tallHeader: {
         width: '100%',
-        height: 150,
+        height: 180,
         shadowColor: "#dddddd",
         shadowOffset: {
             width: 0,
@@ -285,6 +314,13 @@ export const styles = StyleSheet.create({
         textAlign: 'left',
         fontWeight: 'bold',
     },
+    smallText: { 
+        color: '#E03621',
+        fontSize: 18,
+        fontFamily: 'Gotham',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
     boxText: { 
         color: '#E03621',
         fontSize: 18,
@@ -366,11 +402,26 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },  
+    redBox: {
+        height: 80,
+        backgroundColor: 'white',
+        color: '#F25846',
+        borderColor: '#F25846',
+        borderWidth: 1,
+        paddingTop: 14,
+        paddingBottom: 14,
+        textAlign: "center",
+        fontWeight: 'bold',
+        fontSize: 18,
+        borderRadius: 10,
+        justifyContent: 'center',
+    },  
     wbText: {
         color: '#F25846',
         fontSize: 14,
         fontWeight: 'bold',
         fontFamily: 'Gotham'
-    }
+    },
+
 })
 

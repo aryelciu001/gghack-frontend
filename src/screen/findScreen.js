@@ -54,6 +54,7 @@ export default class LoginScreen extends React.Component {
         veryUrgent: false,
         result: false,
         qty: '1',
+        haveResult: false,
     };
 
     componentDidMount(){
@@ -86,6 +87,9 @@ export default class LoginScreen extends React.Component {
 
     onFindBlood = () => {
         this.setState({result: true})
+    }
+    onReq = () => {
+        this.props.navigation.navigate("ReqFormScreen")
     }
     render(){
         return(
@@ -161,7 +165,7 @@ export default class LoginScreen extends React.Component {
                                         placeholder="Quantity"
                                         widthBox= {'40%'}
                                         value={this.state.qty}
-                                        onValueChange={(text) => this.setState({qty: text})}
+                                        onChangeText={(text) => this.setState({qty: text})}
                                     />
                                 </View>
                  
@@ -227,7 +231,9 @@ export default class LoginScreen extends React.Component {
                         <Text style={[styles.subheadText, {textAlign: 'center'}]}>
                           Search Result 
                         </Text>
-                        <View style={{padding: '5%', justifyContent: 'center', alignItems: 'center', }}>
+
+                        {this.state.haveResult ?(
+                            <View style={{padding: '5%', justifyContent: 'center', alignItems: 'center', }}>
                             <View style= {styles.bannerList}>
                                 <TouchableOpacity 
                                     onPress={()=>{this.props.navigation.navigate('BookScreen')}}
@@ -247,6 +253,41 @@ export default class LoginScreen extends React.Component {
                           
 
                         </View>
+                        ) : (
+
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Image 
+                                    source={require('../img/noFind.png')}
+                                    style={{
+                                        width: 100,
+                                        height: 100,
+                                    }}
+                                    resizeMode={'contain'}
+                                
+                                />
+                            </View>
+                            <Text style={styles.smallText}>
+                            No blood available
+                            </Text>
+                            <Text style={styles.normalText}>
+                            Want to make a request?
+                            </Text>
+                            <View style={{marginTop: 10, marginBottom: 50}}>
+                                <Button 
+                                    onPress={()=>{this.onReq()}}
+                                    style={styles.whiteButton}
+                                >
+                                    <Text style={styles.wbText}>
+                                    REQUEST BLOOD
+                                    </Text>
+                                </Button>
+                            </View>
+
+                        </View>
+                        )}
+                        
                     </View>
                 ) : (
                     false
